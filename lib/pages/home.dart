@@ -13,7 +13,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade100,
+        backgroundColor: Colors.blue.shade600,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back), onPressed: () {  },
@@ -23,7 +23,7 @@ class HomeState extends State<Home> {
               fontWeight:FontWeight.bold,
               fontFamily: "Times New Roman",
               fontStyle: FontStyle.italic,
-            fontSize: 15,
+            fontSize: 23,
           ),
         ),
         actions: <Widget>[
@@ -34,6 +34,7 @@ class HomeState extends State<Home> {
 
       ),
       body:const LocationsForGoogleMaps(),
+      backgroundColor: Colors.blue.shade100,
     );
   }
 }
