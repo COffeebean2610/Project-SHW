@@ -32,14 +32,6 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
           ),
 
         ),
-      // Expanded(
-      //     child: Padding(
-      //       padding:const  EdgeInsets.symmetric(horizontal:17.0,vertical: 17.0),
-      //       child: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //           crossAxisCount:2),
-      //           itemBuilder:(context,index)=>itemCard()),
-      //  ),
-      // )
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 23),
