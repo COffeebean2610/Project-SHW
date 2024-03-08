@@ -5,34 +5,34 @@ import 'package:project_shw/models/MapLocations.dart';
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.product});
 
-  final Product product;
+  final MapLoc product;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
-      backgroundColor: product.color,
+      backgroundColor: Colors.blue.shade100,
       appBar: AppBar(
-        backgroundColor: product.color,
+        backgroundColor:Colors.blue.shade600,
         elevation: 0,
-        leading: IconButton(
-          icon: SvgPicture.asset(
-            'assets/icons/back.svg',
-            colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
-          ),
-          onPressed: () => Navigator.pop(context),
+        title: Text(product.title),
+        titleTextStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 23),
+        leading: IconButton(icon:const Icon(
+          Icons.arrow_back,
+          color: Colors.black,
         ),
+            onPressed: () => Navigator.pop(context),
+          ),
+
+
         actions: <Widget>[
           IconButton(
-            icon: SvgPicture.asset("assets/icons/search.svg"),
+            icon: Icon(Icons.search, color: Colors.black),
             onPressed: () {},
           ),
-          IconButton(
-            icon: SvgPicture.asset("assets/icons/cart.svg"),
-            onPressed: () {},
-          ),
-          SizedBox(width: 23 / 2)
+
+          const SizedBox(width: 23 / 2)
         ],
       ),
       body: SingleChildScrollView(
@@ -43,31 +43,20 @@ class DetailsScreen extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(top: size.height * 0.3),
+                    margin: EdgeInsets.only(top:12,bottom: 90,left: 12,right: 12),
                     padding: EdgeInsets.only(
-                      top: size.height * 0.12,
+                      top: size.height ,
                       left: 23,
                       right: 23,
                     ),
                     // height: 500,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(24),
-                        topRight: Radius.circular(24),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(23),
                       ),
                     ),
-                    child: Column(
-                      children: <Widget>[
-                        
-                        SizedBox(height: 23 / 2),
 
-                        SizedBox(height: 23 / 2),
-
-                        SizedBox(height: 23 / 2),
-
-                      ],
-                    ),
                   ),
 
                 ],

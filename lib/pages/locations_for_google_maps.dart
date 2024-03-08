@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project_shw/models/MapLocations.dart';
+import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
 
 
@@ -47,19 +45,31 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
             padding: const EdgeInsets.symmetric(horizontal: 23),
             child: GridView.builder(
               itemCount: products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 23,
                 crossAxisSpacing: 23,
                 childAspectRatio: 0.75,
+
               ),
               itemBuilder: (context, index) => ItemCard(
-                product: products[index], press: () {  },
+                product: products[index],
+
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailsScreen(product: products[index]),
+                    ),
+                  );
+                },
 
               ),
             ),
           ),
         ),
+
       ],
     );
 
