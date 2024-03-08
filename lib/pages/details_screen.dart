@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:project_shw/models/MapLocations.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class DetailsScreen extends StatelessWidget {
         backgroundColor:Colors.blue.shade600,
         elevation: 0,
         title: Text(product.title),
-        titleTextStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 23),
+        titleTextStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 23),
         leading: IconButton(icon:const Icon(
           Icons.arrow_back,
           color: Colors.black,
@@ -28,7 +28,7 @@ class DetailsScreen extends StatelessWidget {
 
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search, color: Colors.black),
+            icon:const  Icon(Icons.search, color: Colors.black),
             onPressed: () {},
           ),
 
@@ -43,7 +43,7 @@ class DetailsScreen extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(top:12,bottom: 90,left: 12,right: 12),
+                    margin: const EdgeInsets.only(top:12,bottom: 90,left: 12,right: 12),
                     padding: EdgeInsets.only(
                       top: size.height ,
                       left: 23,
