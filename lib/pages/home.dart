@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'locations_for_google_maps.dart';
+import 'Search_Screen.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -33,7 +34,8 @@ class HomeState extends State<Home> {
         ],
 
       ),
-      body:const LocationsForGoogleMaps(),
+      body:const SearchScreen(),
+
     );
   }
 }
