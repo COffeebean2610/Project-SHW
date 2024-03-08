@@ -43,7 +43,7 @@ class ItemCard extends StatelessWidget {
             child: Text(
               // products is out demo list
               product.title,
-              style: TextStyle(color: Colors.green),
+              style: TextStyle(color: Colors.deepOrange,fontSize: 15),
             ),
           ),
 
