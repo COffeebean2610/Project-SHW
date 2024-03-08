@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:project_shw/models/MapLocations.dart';
 
+import 'Search_Screen.dart';
+
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.product});
 
   final MapLoc product;
-  void launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  void launchURL(Uri url) async {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
@@ -36,7 +38,9 @@ class DetailsScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon:const  Icon(Icons.search, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+            },
           ),
 
           const SizedBox(width: 23 / 2)

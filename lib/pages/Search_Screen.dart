@@ -28,8 +28,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Samrudhhi Roadlines'),
+        title:const Text("Samruddhi Roadlines",
+          style: TextStyle(color: Colors.black,
+            fontWeight:FontWeight.bold,
+            fontFamily: "Times New Roman",
+            fontStyle: FontStyle.italic,
+            fontSize: 23,
+          ),
+        ),
+        backgroundColor: Colors.blue.shade600,
       ),
+      backgroundColor: Colors.blue.shade100,
       body: Center(
         child: Container(
           width: 300,
@@ -37,40 +46,44 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+
                 decoration: InputDecoration(
+                  labelText: "From",
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(11),
-                    borderSide: BorderSide(
+                    borderSide:const BorderSide(
                       color: Colors.blue,
                       width: 2,
+
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(11),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.grey,
                       width: 2,
                     ),
                   ),
                 ),
+
               ),
-              SizedBox(height: 11),
+              const SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
+                  labelText: "To",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(11),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){
-
-              },child: Text(
+              ElevatedButton(onPressed: (){},
+                  child: const Text(
                 'Search'
-
-              ))
+              ),
+              ),
             ],
           ),
         ),

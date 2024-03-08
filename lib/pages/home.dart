@@ -16,9 +16,7 @@ class HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade600,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back), onPressed: () {  },
-        ),
+
         title:const Text("Samruddhi Roadlines",
           style: TextStyle(color: Colors.black,
               fontWeight:FontWeight.bold,
@@ -28,8 +26,15 @@ class HomeState extends State<Home> {
           ),
         ),
         actions: <Widget>[
-          IconButton(icon:Icon(Icons.search)
-            ,onPressed: (){},
+          IconButton(icon:const Icon(Icons.search, size: 30,),
+            onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MyHomePage(),
+              ),
+            );
+            },
           )
         ],
 

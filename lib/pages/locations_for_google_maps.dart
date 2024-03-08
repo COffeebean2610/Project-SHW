@@ -34,7 +34,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 23),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GridView.builder(
               itemCount: products.length,
 
