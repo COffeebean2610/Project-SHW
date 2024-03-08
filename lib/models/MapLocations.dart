@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MapLoc {
-  final String  title, description;
+  final String  title, description,linktolocation;
   final int price, size, id;
   final Color color;
 
@@ -12,15 +12,17 @@ class MapLoc {
         required this.price,
         required this.size,
         required this.id,
+        required this.linktolocation,
         required this.color});
 }
 
 List<MapLoc> products = [
   MapLoc(
       id: 1,
-      title: "Route 1",
+      title: "Shirdi To Nagpur",
       price: 234,
       size: 12,
+      linktolocation:'https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
       description: dummyText,
 
       color: Color(0xFF3D82AE)),
@@ -29,12 +31,14 @@ List<MapLoc> products = [
       title: "Route 2",
       price: 234,
       size: 8,
+      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
       description: dummyText,
       color: Color(0xFFD3A984)),
   MapLoc(
       id: 3,
       title: "Route 3",
       price: 234,
+      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
       size: 10,
       description: dummyText,
 
@@ -43,6 +47,7 @@ List<MapLoc> products = [
       id: 4,
       title: "Route 4",
       price: 234,
+      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
       size: 11,
       description: dummyText,
 
@@ -52,6 +57,7 @@ List<MapLoc> products = [
       title: "Route 5",
       price: 234,
       size: 12,
+      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
       description: dummyText,
 
       color: Color(0xFFFB7883)),
@@ -60,6 +66,7 @@ List<MapLoc> products = [
     title: "Route 6",
     price: 234,
     size: 12,
+    linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
     description: dummyText,
 
     color: Color(0xFFAEAEAE),
@@ -69,6 +76,7 @@ List<MapLoc> products = [
     title: "Route 6",
     price: 234,
     size: 12,
+    linktolocation:'https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
     description: dummyText,
 
     color: Color(0xFFAEAEAE),
@@ -77,6 +85,7 @@ List<MapLoc> products = [
     title: "Route 6",
     price: 234,
     size: 12,
+    linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
     description: dummyText,
 
     color: Color(0xFFAEAEAE),
@@ -86,4 +95,4 @@ List<MapLoc> products = [
 ];
 
 String dummyText =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";
+    "The Samruddhi Mahamarg is a state-of-the-art expressway connecting Shirdi to Nagpur, offering travelers a seamless journey between these two significant cities. This route ensures efficient travel with well-maintained roads, modern amenities, and advanced traffic management systems. Commuters can expect a smooth and comfortable drive, passing through picturesque landscapes and rural areas, before reaching the bustling city of Nagpur.";
