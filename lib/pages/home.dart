@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'locations_for_google_maps.dart';
+import 'Search_Screen.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,7 +14,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade100,
+        backgroundColor: Colors.blue.shade600,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back), onPressed: () {  },
@@ -23,7 +24,7 @@ class HomeState extends State<Home> {
               fontWeight:FontWeight.bold,
               fontFamily: "Times New Roman",
               fontStyle: FontStyle.italic,
-            fontSize: 15,
+            fontSize: 23,
           ),
         ),
         actions: <Widget>[
@@ -33,7 +34,12 @@ class HomeState extends State<Home> {
         ],
 
       ),
+
+
+
       body:const LocationsForGoogleMaps(),
+      backgroundColor: Colors.blue.shade100,
+
     );
   }
 }
