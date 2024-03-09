@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_shw/models/MapLocations.dart';
+import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
 

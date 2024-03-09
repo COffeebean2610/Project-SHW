@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:project_shw/models/MapLocations.dart';
+import 'package:project_shw/models/map_locations.dart';
 
-import 'Search_Screen.dart';
+import 'search_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.product});
@@ -19,6 +19,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final Size textSize = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
       backgroundColor: Colors.blue.shade100,
@@ -79,7 +80,7 @@ class DetailsScreen extends StatelessWidget {
                       child: Text(product.description,
                         style: const TextStyle(
                             color: Colors.black,
-                            fontSize: 23
+                            fontSize: 23,//different for all screens error
                         ),
                       ),
                     ),
