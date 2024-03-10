@@ -100,6 +100,7 @@ class SearchScreen extends StatefulWidget {
                             .contains(_toLocation.toLowerCase()))
                         .toList();
 
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -116,6 +117,7 @@ class SearchScreen extends StatefulWidget {
                   }
                 },
                 child: const Text('Search'),
+
               ),
             ],
           ),

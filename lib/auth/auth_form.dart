@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class AuthForm extends StatefulWidget {
@@ -53,6 +54,16 @@ class AuthFormState extends State<AuthForm> {
             .set({"username": username, "email": email});
       }
     } on FirebaseAuthException {
+      Fluttertoast.showToast(
+          msg: "Invalid Credentials",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue.shade600,
+          textColor: Colors.black,
+          fontSize: 16.0
+      );
       rethrow;
 
     }
