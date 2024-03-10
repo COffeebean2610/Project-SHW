@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'locations_for_google_maps.dart';
-import 'Search_Screen.dart';
+import 'search_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -35,7 +36,14 @@ class HomeState extends State<Home> {
               ),
             );
             },
-          )
+          ),
+          IconButton(
+            icon:const Icon(Icons.logout),
+            onPressed: ()async {
+              await FirebaseAuth.instance.signOut();
+            },
+
+          ),
         ],
 
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_shw/models/MapLocations.dart';
+import 'package:project_shw/models/map_locations.dart';
 
 
 
@@ -18,7 +18,7 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(23),
+              padding:const  EdgeInsets.all(23),
               decoration: BoxDecoration(
                 color: product.color,
                 boxShadow: [

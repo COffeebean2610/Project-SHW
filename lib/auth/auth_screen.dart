@@ -20,10 +20,10 @@ class AuthScreenState extends State<AuthScreen> {
            fontStyle: FontStyle.italic,
           ),
       ),
-        backgroundColor: Colors.blue.shade100,
+        backgroundColor: Colors.blue.shade700,
       ),
       body: const AuthForm(),
-      backgroundColor: Colors.red.shade100,
+      backgroundColor: Colors.blue.shade100,
     );
   }
 }
