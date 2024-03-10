@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'auth/auth_screen.dart';
 import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,9 +35,28 @@ class MyApp extends StatelessWidget {
             builder:(context,usersnapshot){
 
               if(usersnapshot.hasData){
+                Fluttertoast.showToast(
+                    msg: "Welcome",
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.blue.shade600,
+                    textColor: Colors.black,
+                    fontSize: 16.0
+                );
                 return const Home();
+
               }
               else{
+                Fluttertoast.showToast(
+                    msg: "Please Login",
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.blue.shade600,
+                    textColor: Colors.black,
+                    fontSize: 16.0
+                );
                 return const AuthScreen();
               }
             })

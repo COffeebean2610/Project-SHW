@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:project_shw/models/map_locations.dart';
 
@@ -23,14 +24,25 @@ class DetailsScreen extends StatelessWidget {
 
   void launchboth() async{
     var link = await _fetchMapLink();
+    // ignore: await_only_futures
     Uri url = await Uri.parse(link.toString() );
     launchURL(url);
+
+    Fluttertoast.showToast(
+        msg: "Happy Journey",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue.shade600,
+        textColor: Colors.black,
+        fontSize: 16.0
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final Size textSize = MediaQuery.of(context).size;
+    //final Size textSize = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
       backgroundColor: Colors.blue.shade100,
