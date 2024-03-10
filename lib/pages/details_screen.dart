@@ -41,7 +41,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+
     //final Size textSize = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
@@ -74,13 +74,13 @@ class DetailsScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: size.height,
+              height:MediaQuery.of(context).size.height/1.2,
               child: Stack(
                 children: <Widget>[
                   Container(
                     margin: const EdgeInsets.only(top:12,bottom: 90,left: 12,right: 12),
                     padding: EdgeInsets.only(
-                      top: size.height ,
+                      top: 50*MediaQuery.of(context).size.width/360,//different for all screens error
                       left: 23,
                       right: 23,
                     ),
@@ -101,43 +101,41 @@ class DetailsScreen extends StatelessWidget {
                         right: 23,
                       ),
                       child: Text(product.description,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.black,
-                            fontSize: 23,//different for all screens error
+                            fontSize: 18*MediaQuery.of(context).size.width/360,//different for all screens error
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 12,bottom: 90,left: 12,right: 12),
-                      padding: const EdgeInsets.only(
-                        top: 700,
-                        left: 23,
-                        right: 23,
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          //open googlemaps
-                         launchboth();
 
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(80)),
-                          ),
+                  Container(
+                    margin: const EdgeInsets.only(top:1,bottom: 10),
+
+                    padding:const EdgeInsets.all(3),
+
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //open googlemaps
+                        launchboth();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape:const  RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(80)),
                         ),
-                        child: const Text("Go To Map",style: TextStyle(color: Colors.white),),
-
                       ),
-                      // height: 500,
-
-
-
+                      child:const Text(
+                        "Go To Map",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
+                  ),
                 ],
               ),
-            )
+            ),
+
           ],
+
         ),
       ),
     );

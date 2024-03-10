@@ -40,15 +40,20 @@ class MyHomePageState extends State<MyHomePage> {
       ),
       backgroundColor: Colors.blue.shade100,
       body: Center(
+
         child: SizedBox(
           width: 300,
+
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+
             children: [
+
               TextField(
 
                 decoration: InputDecoration(
                   labelText: "From",
+
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(11),
                     borderSide:const BorderSide(
