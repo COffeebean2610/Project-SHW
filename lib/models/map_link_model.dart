@@ -11,9 +11,9 @@ class MapLink {
 }
 class MapLinkService {
   final db = FirebaseFirestore.instance;
-
+  final _mapLink = 'nagtoshir';
   Future<String> getMapLink() async {
-    var snapshot = await db.collection('mapLinks').doc('mahamarg').get();
+    var snapshot = await db.collection('mapLinks').doc(_mapLink).get();
     if (snapshot.exists) {
       // Check if the document exists
       return snapshot.data()?['link'] ?? '';
