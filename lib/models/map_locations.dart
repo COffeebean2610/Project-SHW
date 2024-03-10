@@ -96,4 +96,10 @@ List<MapLoc> products = [
 Future<String> getMapLink() async => mapLinkService.getMapLink();
 
 String dummyText =
-    "The Samruddhi Mahamarg is a state-of-the-art expressway connecting Shirdi to Nagpur, offering travelers a seamless journey between these two significant cities. This route ensures efficient travel with well-maintained roads, modern amenities, and advanced traffic management systems. Commuters can expect a smooth and comfortable drive, passing through picturesque landscapes and rural areas, before reaching the bustling city of Nagpur.";
+    "Khrud to Nagpur\n"
+    "Petrol Pumps : 6\n"
+    "Total Time :6 hr 57 min\n"
+    "Total Distance : 599 km\n"
+    "The petrol pumps are optional to visit.\n"
+    "Prerequisites : You should be near the start point\n."
+    "May your Journey be Safe.";

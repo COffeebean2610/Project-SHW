@@ -31,9 +31,9 @@ class DetailsScreen extends StatelessWidget {
     Fluttertoast.showToast(
         msg: "Happy Journey",
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue.shade600,
+        backgroundColor: Colors.blue.shade200,
         textColor: Colors.black,
         fontSize: 16.0
     );
@@ -109,7 +109,11 @@ class DetailsScreen extends StatelessWidget {
                     ),
 
                   Container(
-                    margin: const EdgeInsets.only(top:1,bottom: 10),
+                    margin:  EdgeInsets.only(
+                        top:530*MediaQuery.of(context).size.width/360,
+                        left: 12,
+                        right: 12,
+                        bottom: 10),
 
                     padding:const EdgeInsets.all(3),
 

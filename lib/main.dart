@@ -35,15 +35,7 @@ class MyApp extends StatelessWidget {
             builder:(context,usersnapshot){
 
               if(usersnapshot.hasData){
-                Fluttertoast.showToast(
-                    msg: "Welcome",
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.blue.shade600,
-                    textColor: Colors.black,
-                    fontSize: 16.0
-                );
+
                 return const Home();
 
               }
