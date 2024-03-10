@@ -108,12 +108,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(top: 12,bottom: 90,left: 12,right: 12),
-                      padding: const EdgeInsets.only(
-                        top: 700,
-                        left: 23,
-                        right: 23,
-                      ),
+
                       child: ElevatedButton(
                         onPressed: () {
                           //open googlemaps

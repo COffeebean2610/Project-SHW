@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
@@ -29,8 +27,9 @@ class SearchScreenState extends State<SearchScreen> {
         child: SizedBox(
           width: 300,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(height: 30,),
               TextField(
 
                 decoration: InputDecoration(
@@ -40,7 +39,6 @@ class SearchScreenState extends State<SearchScreen> {
                     borderSide:const BorderSide(
                       color: Colors.blue,
                       width: 2,
-
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -65,7 +63,9 @@ class SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){},
+              ElevatedButton(onPressed: (){
+
+              },
                   child: const Text(
                 'Search'
               ),
