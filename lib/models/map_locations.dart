@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_shw/models/map_link_model.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 MapLinkService mapLinkService = MapLinkService();
 class MapLoc {
   final String  title, description,linktolocation;
-  final int  id;
+  final String  id;
   final Color color;
-
+  MapLinksModel mapLinksModel = MapLinksModel('mapLinks');
   MapLoc(
       {
         required this.title,
@@ -14,86 +14,114 @@ class MapLoc {
         required this.id,
         required this.linktolocation,
         required this.color});
+
 }
 
 List<MapLoc> products = [
   MapLoc(
       linktolocation:'',
-      id: 1,
+      id: 'nagtoshir',
       title: "Khrud to Nagpur",
 
       description: dummyText,
 
       color: const Color(0xFF3D82AE)),
+
   MapLoc(
-      id: 2,
-      title: "Route 2",
+      id: 'nagtosindhidp',
+      title: "Nagpur to Sindhi dry port",
 
-
-      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
-      description: dummyText,
-      color:const Color(0xFFD3A984)),
-  MapLoc(
-      id: 3,
-      title: "Route 3",
-
-      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+      linktolocation:'',
 
       description: dummyText,
 
       color:const Color(0xFF989493)),
   MapLoc(
-      id: 4,
-      title: "Route 4",
+      id: 'nagtowardha',
+      title: "Nagpur to Wardha",
 
-      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+      linktolocation:'',
 
       description: dummyText,
 
       color:const Color(0xFFE6B398)),
   MapLoc(
-      id: 5,
-      title: "Route 5",
+      id: 'nagtoarvi',
+      title: "nagpur to arvi",
 
 
-      linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+      linktolocation:'',
       description: dummyText,
 
       color:const Color(0xFFFB7883)),
   MapLoc(
-    id: 6,
-    title: "Route 6",
+    id: 'nagtodmg',
+    title: "Nagpur to Dhamangaon",
 
 
-    linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+    linktolocation:'',
     description: dummyText,
 
     color: const Color(0xFFAEAEAE),
   ),
   MapLoc(
-    id: 6,
-    title: "Route 6",
+    id: 'nagtoymav',
+    title: "Nagput to Yavatmal-Amravati",
 
 
-    linktolocation:'https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+    linktolocation:'',
+    description: dummyText,
+
+    color:const Color(0xFFD3A984),
+  ),
+  MapLoc(
+    id: 'nagtokrnjl',
+    title: "Nagpur to Karanja Lad",
+
+
+    linktolocation:'',
     description: dummyText,
 
     color:const Color(0xFFAEAEAE),
-  ),MapLoc(
-    id: 6,
-    title: "Route 6",
+  ),
+  MapLoc(
+    id: 'nagtoselbjr',
+    title: "Nagpur to Seloo Bajar",
 
 
-    linktolocation:' https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+    linktolocation:'',
     description: dummyText,
 
-    color:const Color(0xFFAEAEAE),
+    color:const Color(0xFFD3A984),
+  ),
+  MapLoc(
+    id: 'nagtomaljahngir',
+    title: "Nagpur to Malegaon-Jahangir",
+
+
+    linktolocation:'',
+    description: dummyText,
+
+    color:const Color(0xFFD3A984),
   ),
 
 
 ];
 
-Future<String> getMapLink() async => mapLinkService.getMapLink();
+
+class MapLinksModel {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final String collectionName;
+
+  MapLinksModel(this.collectionName);
+
+  Future<List<Object?>> fetchMapLinks() async {
+    QuerySnapshot querySnapshot = await _firestore.collection(collectionName).get();
+    return querySnapshot.docs.map((doc) => doc.data()).toList();
+  }
+}
+
+//Future<String> getMapLink() async => mapLinkService.getMapLink();
 
 String dummyText =
     "Khrud to Nagpur\n"

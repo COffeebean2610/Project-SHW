@@ -70,7 +70,9 @@ class SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){},
+              ElevatedButton(onPressed: (){
+                //code
+              },
                   child: const Text(
                 'Search'
               ),

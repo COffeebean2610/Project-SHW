@@ -17,7 +17,7 @@ class DetailsScreen extends StatelessWidget {
     }
   }
   Future<String?> _fetchMapLink() async {
-    String mapLink = await mapLinkService.getMapLink();
+    String mapLink = await mapLinkService.getMapLink(product.id);
     return mapLink;
 
   }
