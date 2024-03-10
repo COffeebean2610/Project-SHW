@@ -63,7 +63,7 @@ class DetailsScreen extends StatelessWidget {
           IconButton(
             icon:const  Icon(Icons.search, color: Colors.black),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
             },
           ),
 
