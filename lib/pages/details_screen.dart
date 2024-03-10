@@ -108,6 +108,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
 
+
                   Container(
                     margin: const EdgeInsets.only(top:1,bottom: 10),
 

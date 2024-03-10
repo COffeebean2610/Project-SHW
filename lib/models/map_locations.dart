@@ -96,4 +96,4 @@ List<MapLoc> products = [
 Future<String> getMapLink() async => mapLinkService.getMapLink();
 
 String dummyText =
-    "The Samruddhi Mahamarg is a state-of-the-art expressway connecting Shirdi to Nagpur, offering travelers a seamless journey between these two significant cities. This route ensures efficient travel with well-maintained roads, modern amenities, and advanced traffic management systems. Commuters can expect a smooth and comfortable drive, passing through picturesque landscapes and rural areas, before reaching the bustling city of Nagpur.";
+    "Samruddhi Mahamarg is a state-of-the-art expressway connecting Shirdi to Nagpur, offering travelers a seamless journey between these two significant cities. This route ensures efficient travel with well-maintained roads, modern amenities, and advanced traffic management systems. Commuters can expect a smooth and comfortable drive, passing through picturesque landscapes and rural areas, before reaching the bustling city of Nagpur.";
