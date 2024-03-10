@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'locations_for_google_maps.dart';
-import 'Search_Screen.dart';
+import 'search_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -16,9 +17,7 @@ class HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade600,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back), onPressed: () {  },
-        ),
+
         title:const Text("Samruddhi Roadlines",
           style: TextStyle(color: Colors.black,
               fontWeight:FontWeight.bold,
@@ -28,9 +27,23 @@ class HomeState extends State<Home> {
           ),
         ),
         actions: <Widget>[
-          IconButton(icon:Icon(Icons.search)
-            ,onPressed: (){},
-          )
+          IconButton(icon:const Icon(Icons.search, size: 30,),
+            onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MyHomePage(),
+              ),
+            );
+            },
+          ),
+          IconButton(
+            icon:const Icon(Icons.logout),
+            onPressed: ()async {
+              await FirebaseAuth.instance.signOut();
+            },
+
+          ),
         ],
 
       ),

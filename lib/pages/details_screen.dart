@@ -1,22 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:project_shw/models/MapLocations.dart';
+import 'package:project_shw/models/map_locations.dart';
+
+import 'search_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.product});
 
   final MapLoc product;
-  void launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  void launchURL(Uri url) async {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
+  }
+  Future<String?> _fetchMapLink() async {
+    String mapLink = await mapLinkService.getMapLink();
+    return mapLink;
+
+  }
+
+  void launchboth() async{
+    var link = await _fetchMapLink();
+    // ignore: await_only_futures
+    Uri url = await Uri.parse(link.toString() );
+    launchURL(url);
+
+    Fluttertoast.showToast(
+        msg: "Happy Journey",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue.shade600,
+        textColor: Colors.black,
+        fontSize: 16.0
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    //final Size textSize = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
       backgroundColor: Colors.blue.shade100,
@@ -36,7 +62,9 @@ class DetailsScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon:const  Icon(Icons.search, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+            },
           ),
 
           const SizedBox(width: 23 / 2)
@@ -75,7 +103,7 @@ class DetailsScreen extends StatelessWidget {
                       child: Text(product.description,
                         style: const TextStyle(
                             color: Colors.black,
-                            fontSize: 23
+                            fontSize: 23,//different for all screens error
                         ),
                       ),
                     ),
@@ -89,7 +117,7 @@ class DetailsScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           //open googlemaps
-                          launchUrl(Uri.parse(product.linktolocation));
+                         launchboth();
 
                         },
                         style: ElevatedButton.styleFrom(

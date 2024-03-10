@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_shw/models/MapLocations.dart';
+import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
 
@@ -34,7 +34,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 23),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GridView.builder(
               itemCount: products.length,
 
