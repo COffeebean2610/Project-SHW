@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 class MapLink {
   final String id; // Document ID
   final String link;
@@ -9,9 +9,6 @@ class MapLink {
   // Factory method to create a MapLink  instance from Firestore data
 
 }
-
-
-
 class MapLinkService {
   final db = FirebaseFirestore.instance;
 
@@ -24,14 +21,10 @@ class MapLinkService {
       return '';
     }
   }
-
-
-void someFunction() async{
-    String mapLink = await getMapLink();
-    print(mapLink);
-}
-
-
+// void someFunction() async{
+//     String mapLink = await getMapLink();
+//
+// }
 }
 
 
