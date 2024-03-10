@@ -18,10 +18,10 @@ class MapLoc {
 
 List<MapLoc> products = [
   MapLoc(
-      linktolocation: mapLinkService.getMapLink().toString(),
+      linktolocation:'',
       id: 1,
-      title: "Shirdi To Nagpur",
-      //linktolocation:'https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+      title: "Khrud to Nagpur",
+
       description: dummyText,
 
       color: const Color(0xFF3D82AE)),
