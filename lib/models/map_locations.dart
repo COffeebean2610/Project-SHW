@@ -124,6 +124,7 @@ class MapLinksModel {
 //Future<String> getMapLink() async => mapLinkService.getMapLink();
 
 String dummyText =
+
     "Khrud to Nagpur\n"
     "Petrol Pumps : 6\n"
     "Total Time :6 hr 57 min\n"
@@ -131,3 +132,4 @@ String dummyText =
     "The petrol pumps are optional to visit.\n"
     "Prerequisites : You should be near the start point\n."
     "May your Journey be Safe.";
+

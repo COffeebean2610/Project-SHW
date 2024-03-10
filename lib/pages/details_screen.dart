@@ -108,6 +108,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
 
+
                   Container(
                     margin:  EdgeInsets.only(
                         top:530*MediaQuery.of(context).size.width/360,
