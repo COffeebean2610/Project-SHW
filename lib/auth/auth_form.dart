@@ -67,11 +67,11 @@ class AuthFormState extends State<AuthForm> {
       width: MediaQuery.of(context).size.width,
       child: ListView(
         children: [
-          Container(
-              height: 200,
-              margin: const EdgeInsets.all(20),
-              child: Image.asset("assets/images/todo.png")
-          ),
+          // Container(
+          //     height: 200,
+          //     margin: const EdgeInsets.all(20),
+          //     child: Image.asset("assets/images/todo.png")
+          // ),
           Container(
             padding: const EdgeInsets.all(10),
             child: Form(
