@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_shw/pages/search_function.dart';
+import '../models/map_locations.dart'; // Make sure to import your map_locations.dart file
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -7,14 +9,20 @@ class SearchScreen extends StatefulWidget {
   SearchScreenState createState() => SearchScreenState();
 }
 
-class SearchScreenState extends State<SearchScreen> {
+ class SearchScreenState extends State<SearchScreen> {
+  var _fromLocation = "";
+  var _toLocation = "";
+  late List<MapLoc> products;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text("Samruddhi Roadlines",
-          style: TextStyle(color: Colors.black,
-            fontWeight:FontWeight.bold,
+        title: const Text(
+          "Samruddhi Roadlines",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
             fontFamily: "Times New Roman",
             fontStyle: FontStyle.italic,
             fontSize: 23,
@@ -24,24 +32,27 @@ class SearchScreenState extends State<SearchScreen> {
       ),
       backgroundColor: Colors.blue.shade100,
       body: Center(
-
         child: SizedBox(
           width: 300,
-
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-
             children: [
-              const SizedBox(height: 30,),
-
-              TextField(
-
+              const SizedBox(height: 30),
+              TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter start point";
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _fromLocation = value!;
+                },
                 decoration: InputDecoration(
                   labelText: "From",
-
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(11),
-                    borderSide:const BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                       width: 2,
                     ),
@@ -54,10 +65,18 @@ class SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
-
               ),
               const SizedBox(height: 11),
-              TextField(
+              TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Endpoint";
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _toLocation = value!;
+                },
                 decoration: InputDecoration(
                   labelText: "To",
                   border: OutlineInputBorder(
@@ -68,14 +87,37 @@ class SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){
+              ElevatedButton(
+                onPressed: () {
+                  if (_fromLocation.isNotEmpty && _toLocation.isNotEmpty) {
+                    List<MapLoc> filteredRoutes = products
+                        .where((route) =>
+                    route.title
+                        .toLowerCase()
+                        .contains(_fromLocation.toLowerCase()) &&
+                        route.title
+                            .toLowerCase()
+                            .contains(_toLocation.toLowerCase()))
+                        .toList();
 
-                //code
 
-              },
-                  child: const Text(
-                'Search'
-              ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NextScreen(filteredRoutes),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'Please enter both "From" and "To" locations.'),
+                      ),
+                    );
+                  }
+                },
+                child: const Text('Search'),
+
               ),
             ],
           ),
@@ -84,3 +126,5 @@ class SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
+
