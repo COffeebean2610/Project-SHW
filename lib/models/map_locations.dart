@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_shw/models/map_link_model.dart';
 
-
+MapLinkService mapLinkService = MapLinkService();
 class MapLoc {
   final String  title, description,linktolocation;
   final int  id;
@@ -18,12 +18,13 @@ class MapLoc {
 
 List<MapLoc> products = [
   MapLoc(
+    linktolocation: mapLinkService.getMapLink().toString(),
       id: 1,
       title: "Shirdi To Nagpur",
 
 
-      linktolocation:'https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
-      description: dummyText,
+      //linktolocation:'https://maps.app.goo.gl/C6e7jUbNTppUfqWq5',
+      description: getMapLink().toString(),
 
       color: const Color(0xFF3D82AE)),
   MapLoc(
@@ -93,6 +94,8 @@ List<MapLoc> products = [
 
 
 ];
+
+Future<String> getMapLink() async => mapLinkService.getMapLink();
 
 String dummyText =
     "The Samruddhi Mahamarg is a state-of-the-art expressway connecting Shirdi to Nagpur, offering travelers a seamless journey between these two significant cities. This route ensures efficient travel with well-maintained roads, modern amenities, and advanced traffic management systems. Commuters can expect a smooth and comfortable drive, passing through picturesque landscapes and rural areas, before reaching the bustling city of Nagpur.";

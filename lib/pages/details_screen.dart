@@ -15,6 +15,17 @@ class DetailsScreen extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
+  Future<String?> _fetchMapLink() async {
+    String mapLink = await mapLinkService.getMapLink();
+    return mapLink;
+
+  }
+
+  void launchboth() async{
+    var link = await _fetchMapLink();
+    Uri url = await Uri.parse(link.toString() );
+    launchURL(url);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +105,7 @@ class DetailsScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           //open googlemaps
-                          launchUrl(Uri.parse(product.linktolocation));
+                         launchboth();
 
                         },
                         style: ElevatedButton.styleFrom(
