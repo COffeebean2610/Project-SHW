@@ -47,7 +47,7 @@ List<MapLoc> products = [
       color:const Color(0xFFE6B398)),
   MapLoc(
       id: 'nagtoarvi',
-      title: "nagpur to arvi",
+      title: "nagpur to Arvi",
 
 
       linktolocation:'',
@@ -66,7 +66,7 @@ List<MapLoc> products = [
   ),
   MapLoc(
     id: 'nagtoymav',
-    title: "Nagput to Yavatmal-Amravati",
+    title: "Nagpur to Yavatmal-Amravati",
 
 
     linktolocation:'',

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
 
@@ -12,7 +11,6 @@ class AuthForm extends StatefulWidget {
 }
 
 class AuthFormState extends State<AuthForm> {
-
   //variable declaration
   final _formKey = GlobalKey<FormState>();
   var _email = "";
@@ -58,14 +56,11 @@ class AuthFormState extends State<AuthForm> {
           msg: "Invalid Credentials",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
-
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blue.shade600,
           textColor: Colors.black,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
       rethrow;
-
     }
   }
 
@@ -73,7 +68,6 @@ class AuthFormState extends State<AuthForm> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: ListView(
@@ -141,8 +135,8 @@ class AuthFormState extends State<AuthForm> {
                         obscureText: passwordVisible,
                         keyboardType: TextInputType.emailAddress,
                         key: const ValueKey("password"),
-                        decoration:  InputDecoration(
-                          border:const OutlineInputBorder(
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                               borderSide:
@@ -150,7 +144,9 @@ class AuthFormState extends State<AuthForm> {
                           labelText: "Password",
                           suffixIcon: IconButton(
                             onPressed: togglePasswordVisibility,
-                            icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off),
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
                           ),
                         ),
                         validator: (value) {
@@ -178,18 +174,18 @@ class AuthFormState extends State<AuthForm> {
                           startauthentication();
                         },
                         child: isLoginPage
-                            ?const Text(
+                            ? const Text(
                                 "Login",
                                 style: TextStyle(
-                                    fontSize: 20
-                                , fontFamily: "Times New Roman", color: Colors.white),
+                                    fontSize: 20,
+                                    fontFamily: "Times New Roman",
+                                    color: Colors.white),
                               )
-                            : const Text(
-                                "Submit",
-                            style: TextStyle(
-                                fontSize: 20
-                                , fontFamily: "Times New Roman", color: Colors.white)
-                              ),
+                            : const Text("Submit",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: "Times New Roman",
+                                    color: Colors.white)),
                       ),
                     ),
                     const SizedBox(
@@ -197,11 +193,11 @@ class AuthFormState extends State<AuthForm> {
                     ),
                     TextButton(
                       child: isLoginPage
-                          ?const  Text(
+                          ? const Text(
                               "Not a user?",
                               style: TextStyle(color: Colors.green),
                             )
-                          :const  Text(
+                          : const Text(
                               "already a user?",
                               style: TextStyle(color: Colors.green),
                             ),
