@@ -39,6 +39,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
     } catch (error) {
       // Handle error
           //  print("Error fetching products: $error");     for debugging purpose
+      //some changes are made here
     }
   }
 
