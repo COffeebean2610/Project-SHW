@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
@@ -11,7 +12,7 @@ class LocationsForGoogleMaps extends StatefulWidget {
 }
 
 class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
-  late List<MapLoc> products;
+  List<MapLoc> products = [];
 
   @override
   void initState() {
@@ -20,10 +21,25 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   }
 
   Future<void> _fetchProducts() async {
-    final fetchedProducts = await MapLinksModel('mapLinks').fetchMapLinks();
-    setState(() {
-      products = fetchedProducts;
-    });
+    try {
+      QuerySnapshot<Map<String, dynamic>> productsSnapshot =
+          await FirebaseFirestore.instance.collection('mapLinks').get();
+
+      setState(() {
+        products = productsSnapshot.docs
+            .map((doc) => MapLoc(
+                  id: doc.id,
+                  title: 'title',
+                  linktolocation: doc['link'],
+                  description: 'description',
+                  color: Colors.red,
+                ))
+            .toList();
+      });
+    } catch (error) {
+      // Handle error
+          //  print("Error fetching products: $error");     for debugging purpose
+    }
   }
 
   @override
@@ -48,27 +64,27 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: products != null
                 ? GridView.builder(
-              itemCount: products.length,
-              gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 23,
-                crossAxisSpacing: 23,
-                childAspectRatio: 0.75,
-              ),
-              itemBuilder: (context, index) => ItemCard(
-                product: products[index],
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          DetailsScreen(product: products[index]),
+                    itemCount: products.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 23,
+                      crossAxisSpacing: 23,
+                      childAspectRatio: 0.75,
                     ),
-                  );
-                },
-              ),
-            )
+                    itemBuilder: (context, index) => ItemCard(
+                      product: products[index],
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailsScreen(product: products[index]),
+                          ),
+                        );
+                      },
+                    ),
+                  )
                 : Center(child: CircularProgressIndicator()),
           ),
         ),

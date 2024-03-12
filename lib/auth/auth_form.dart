@@ -27,6 +27,16 @@ class AuthFormState extends State<AuthForm> {
       _formKey.currentState!.save();
       submitform(_email, _password, _username);
     }
+    else{
+      Fluttertoast.showToast(
+          msg: "Invalid Credentials",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue.shade600,
+          textColor: Colors.black,
+          fontSize: 16.0);
+    }
   }
 
   togglePasswordVisibility() {
