@@ -6,7 +6,7 @@ import 'package:project_shw/models/map_locations.dart';
 import 'search_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key, required this.product, required String this.link});
+  const DetailsScreen({super.key, required this.product, required this.link});
   final String link;
   final MapLoc product;
   void launchURL(Uri url) async {
@@ -17,10 +17,10 @@ class DetailsScreen extends StatelessWidget {
     }
   }
 
-  Future<String?> _fetchMapLink() async {
-    String mapLink = await mapLinkService.getMapLink(product.id);
-    return mapLink;
-  }
+  // Future<String?> _fetchMapLink() async {
+  //   String mapLink = await mapLinkService.getMapLink(product.id);
+  //   return mapLink;
+  // }
 
   void launchboth() async {
    // var link = await _fetchMapLink();

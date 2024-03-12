@@ -63,8 +63,8 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: products != null
-                ? GridView.builder(
+
+            child: GridView.builder(
                     itemCount: products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -86,10 +86,11 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                       },
                     ),
                   )
-                : Center(child: CircularProgressIndicator()),
+//                :const Center(child: CircularProgressIndicator()),
           ),
         ),
       ],
     );
   }
+
 }
