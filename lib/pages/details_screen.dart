@@ -23,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
   // }
 
   void launchboth() async {
-   // var link = await _fetchMapLink();
+    // var link = await _fetchMapLink();
     // ignore: await_only_futures
     Uri url = await Uri.parse(link.toString());
     launchURL(url);

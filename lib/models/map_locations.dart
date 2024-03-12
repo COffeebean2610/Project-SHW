@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:project_shw/models/map_link_model.dart';
 
 class MapLoc {
@@ -20,7 +20,6 @@ class MapLoc {
 MapLinkService mapLinkService = MapLinkService();
 
 class MapLinksModel {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String collectionName;
 
   MapLinksModel(this.collectionName);
