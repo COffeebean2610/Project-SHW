@@ -7,8 +7,8 @@ class MapLink {
   MapLink({required this.id, required this.link});
 
   // Factory method to create a MapLink  instance from Firestore data
-
 }
+
 class MapLinkService {
   final db = FirebaseFirestore.instance;
 
@@ -26,5 +26,3 @@ class MapLinkService {
 //
 // }
 }
-
-

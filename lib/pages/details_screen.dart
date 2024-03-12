@@ -16,16 +16,16 @@ class DetailsScreen extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
+
   Future<String?> _fetchMapLink() async {
     String mapLink = await mapLinkService.getMapLink(product.id);
     return mapLink;
-
   }
 
-  void launchboth() async{
+  void launchboth() async {
     var link = await _fetchMapLink();
     // ignore: await_only_futures
-    Uri url = await Uri.parse(link.toString() );
+    Uri url = await Uri.parse(link.toString());
     launchURL(url);
 
     Fluttertoast.showToast(
@@ -35,38 +35,38 @@ class DetailsScreen extends StatelessWidget {
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.blue.shade200,
         textColor: Colors.black,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
   }
 
   @override
   Widget build(BuildContext context) {
-
     //final Size textSize = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
       backgroundColor: Colors.blue.shade100,
       appBar: AppBar(
-        backgroundColor:Colors.blue.shade600,
+        backgroundColor: Colors.blue.shade600,
         elevation: 0,
         title: Text(product.title),
-        titleTextStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 23),
-        leading: IconButton(icon:const Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-            onPressed: () => Navigator.pop(context),
+        titleTextStyle: const TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 23),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
-
-
+          onPressed: () => Navigator.pop(context),
+        ),
         actions: <Widget>[
           IconButton(
-            icon:const  Icon(Icons.search, color: Colors.black),
+            icon: const Icon(Icons.search, color: Colors.black),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SearchScreen()));
             },
           ),
-
           const SizedBox(width: 23 / 2)
         ],
       ),
@@ -74,13 +74,16 @@ class DetailsScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height:MediaQuery.of(context).size.height/1.2,
+              height: MediaQuery.of(context).size.height / 1.2,
               child: Stack(
                 children: <Widget>[
                   Container(
-                    margin: const EdgeInsets.only(top:12,bottom: 90,left: 12,right: 12),
+                    margin: const EdgeInsets.only(
+                        top: 12, bottom: 90, left: 12, right: 12),
                     padding: EdgeInsets.only(
-                      top: 50*MediaQuery.of(context).size.width/360,//different for all screens error
+                      top: 50 *
+                          MediaQuery.of(context).size.width /
+                          360, //different for all screens error
                       left: 23,
                       right: 23,
                     ),
@@ -91,33 +94,32 @@ class DetailsScreen extends StatelessWidget {
                         Radius.circular(23),
                       ),
                     ),
-
                   ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 12,bottom: 90,left: 12,right: 12),
-                      padding: const EdgeInsets.only(
-                        top: 50,
-                        left: 23,
-                        right: 23,
-                      ),
-                      child: Text(product.description,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18*MediaQuery.of(context).size.width/360,//different for all screens error
-                        ),
+                  Container(
+                    margin: const EdgeInsets.only(
+                        top: 12, bottom: 90, left: 12, right: 12),
+                    padding: const EdgeInsets.only(
+                      top: 50,
+                      left: 23,
+                      right: 23,
+                    ),
+                    child: Text(
+                      product.description,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18 *
+                            MediaQuery.of(context).size.width /
+                            360, //different for all screens error
                       ),
                     ),
-
-
+                  ),
                   Container(
-                    margin:  EdgeInsets.only(
-                        top:530*MediaQuery.of(context).size.width/360,
+                    margin: EdgeInsets.only(
+                        top: 530 * MediaQuery.of(context).size.width / 360,
                         left: 12,
                         right: 12,
                         bottom: 10),
-
-                    padding:const EdgeInsets.all(3),
-
+                    padding: const EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {
                         //open googlemaps
@@ -125,11 +127,11 @@ class DetailsScreen extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        shape:const  RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(80)),
                         ),
                       ),
-                      child:const Text(
+                      child: const Text(
                         "Go To Map",
                         style: TextStyle(color: Colors.white),
                       ),
@@ -138,9 +140,7 @@ class DetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
-
         ),
       ),
     );

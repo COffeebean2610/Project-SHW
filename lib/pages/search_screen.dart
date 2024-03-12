@@ -9,7 +9,7 @@ class SearchScreen extends StatefulWidget {
   SearchScreenState createState() => SearchScreenState();
 }
 
- class SearchScreenState extends State<SearchScreen> {
+class SearchScreenState extends State<SearchScreen> {
   var _fromLocation = "";
   var _toLocation = "";
   late List<MapLoc> products;
@@ -92,14 +92,13 @@ class SearchScreen extends StatefulWidget {
                   if (_fromLocation.isNotEmpty && _toLocation.isNotEmpty) {
                     List<MapLoc> filteredRoutes = products
                         .where((route) =>
-                    route.title
-                        .toLowerCase()
-                        .contains(_fromLocation.toLowerCase()) &&
-                        route.title
-                            .toLowerCase()
-                            .contains(_toLocation.toLowerCase()))
+                            route.title
+                                .toLowerCase()
+                                .contains(_fromLocation.toLowerCase()) &&
+                            route.title
+                                .toLowerCase()
+                                .contains(_toLocation.toLowerCase()))
                         .toList();
-
 
                     Navigator.push(
                       context,
@@ -109,7 +108,7 @@ class SearchScreen extends StatefulWidget {
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text(
                             'Please enter both "From" and "To" locations.'),
                       ),
@@ -117,7 +116,6 @@ class SearchScreen extends StatefulWidget {
                   }
                 },
                 child: const Text('Search'),
-
               ),
             ],
           ),
@@ -126,5 +124,3 @@ class SearchScreen extends StatefulWidget {
     );
   }
 }
-
-

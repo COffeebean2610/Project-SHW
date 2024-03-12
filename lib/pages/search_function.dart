@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/map_locations.dart';
 
 class NextScreen extends StatelessWidget {
   final List<MapLoc> filteredRoutes;
 
-  const NextScreen(this.filteredRoutes);
+  const NextScreen(this.filteredRoutes, {super.key});
 
   @override
   Widget build(BuildContext context) {

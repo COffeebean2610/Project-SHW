@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_shw/models/map_locations.dart';
 
-
-
 class ItemCard extends StatelessWidget {
   const ItemCard({super.key, required this.product, required this.press});
 
@@ -18,7 +16,7 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding:const  EdgeInsets.all(23),
+              padding: const EdgeInsets.all(23),
               decoration: BoxDecoration(
                 color: product.color,
                 boxShadow: [
@@ -26,10 +24,9 @@ class ItemCard extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.9), // Set shadow color
                     spreadRadius: 3, // Set the spread radius of the shadow
                     blurRadius: 9, // Set the blur radius of the shadow
-                    offset:const  Offset(0, 5), // Set the offset of the shadow
+                    offset: const Offset(0, 5), // Set the offset of the shadow
                   ),
                 ],
-
                 borderRadius: BorderRadius.circular(23),
               ),
               child: Hero(
@@ -43,10 +40,13 @@ class ItemCard extends StatelessWidget {
             child: Text(
               // products is out demo list
               product.title,
-              style:const TextStyle(color: Colors.deepOrange,fontSize: 15),
+
+              style: const TextStyle(
+                  color: Colors.deepOrange,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
             ),
           ),
-
         ],
       ),
     );
