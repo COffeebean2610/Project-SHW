@@ -108,19 +108,26 @@ List<MapLoc> products = [
 
 ];
 
-
 class MapLinksModel {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String collectionName;
 
   MapLinksModel(this.collectionName);
 
-  Future<List<Object?>> fetchMapLinks() async {
+  Future<List<MapLoc>> fetchMapLinks() async {
     QuerySnapshot querySnapshot = await _firestore.collection(collectionName).get();
-    return querySnapshot.docs.map((doc) => doc.data()).toList();
+    return querySnapshot.docs.map((doc) {
+      final data = doc.data() as Map<String, dynamic>;
+      return MapLoc(
+        id: doc.id,
+        title: data['title'],
+        description: data['description'],
+        linktolocation: data['linktolocation'],
+        color: Color(data['color']),
+      );
+    }).toList();
   }
 }
-
 //Future<String> getMapLink() async => mapLinkService.getMapLink();
 
 String dummyText =
