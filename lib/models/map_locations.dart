@@ -25,18 +25,18 @@ class MapLinksModel {
 
   MapLinksModel(this.collectionName);
 
-  Future<List<MapLoc>> fetchMapLinks() async {
-    QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await _firestore.collection(collectionName).get();
-    return querySnapshot.docs.map((doc) {
-      final data = doc.data();
-      return MapLoc(
-        id: doc.id,
-        title: data['title'] ?? '',
-        description: data['description'] ?? '',
-        linktolocation: data['linktolocation'] ?? '',
-        color:Colors.cyan// Color(int.parse(data['color'], radix: 16)),
-      );
-    }).toList();
-  }
+  // Future<List<MapLoc>> fetchMapLinks() async {
+  //   QuerySnapshot<Map<String, dynamic>> querySnapshot =
+  //   await _firestore.collection(collectionName).get();
+  //   return querySnapshot.docs.map((doc) {
+  //     final data = doc.data();
+  //     return MapLoc(
+  //       id: doc.id,
+  //       title: data['title'] ?? '',
+  //       description: data['description'] ?? '',
+  //       linktolocation: data['linktolocation'] ?? '',
+  //       color:Colors.cyan// Color(int.parse(data['color'], radix: 16)),
+  //     );
+  //   }).toList();
+  // }
 }

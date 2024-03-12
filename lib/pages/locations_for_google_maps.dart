@@ -47,7 +47,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
+          padding:const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
           child: Text(
             "Routes For Samruddhi-Mahamarg",
             style: TextStyle(
@@ -79,7 +79,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                DetailsScreen(product: products[index]),
+                                DetailsScreen(product: products[index],link:products[index].linktolocation),
                           ),
                         );
                       },

@@ -21,16 +21,16 @@ void main() async {
           projectId: "samruddhi-roadlines",
         ))
       : await Firebase.initializeApp();
-  final mapLocs = await MapLinksModel('mapLinks').fetchMapLinks();
-  final products = mapLocs.map((mapLoc) {
-    return MapLoc(
-      id: mapLoc.id,
-      title: mapLoc.title,
-      description: mapLoc.description,
-      linktolocation: mapLoc.linktolocation,
-      color: mapLoc.color,
-    );
-  }).toList();
+  // // final mapLocs = await MapLinksModel('mapLinks').fetchMapLinks();
+  // //final products = mapLocs.map((mapLoc) {
+  //   return MapLoc(
+  //     id: mapLoc.id,
+  //     title: mapLoc.title,
+  //     description: mapLoc.description,
+  //     linktolocation: mapLoc.linktolocation,
+  //     color: mapLoc.color,
+  //   );
+  // }).toList();
   runApp(const MyApp());
 }
 
