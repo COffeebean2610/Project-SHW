@@ -13,7 +13,12 @@ class LocationsForGoogleMaps extends StatefulWidget {
 
 class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   List<MapLoc> products = [];
-
+  final Map<String, Color> colorMap = {
+    'Colors.red': Colors.red,
+    'Colors.blue': Colors.blue,
+    'Colors.green': Colors.green,
+    // Add more colors as needed
+  };
   @override
   void initState() {
     super.initState();
@@ -29,10 +34,10 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         products = productsSnapshot.docs
             .map((doc) => MapLoc(
                   id: doc.id,
-                  title: 'title',
+                  title: doc['title'],
                   linktolocation: doc['link'],
-                  description: 'description',
-                  color: Colors.red,
+                  description: doc['description'],
+                  color: colorMap[doc['color']] ?? Colors.orange,
                 ))
             .toList();
       });
