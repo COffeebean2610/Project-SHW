@@ -10,9 +10,24 @@ class SearchScreen extends StatefulWidget {
 }
 
 class SearchScreenState extends State<SearchScreen> {
-  var _fromLocation = "";
-  var _toLocation = "";
+  // final _fromLocationController = TextEditingController();
+  // final _toLocController = TextEditingController();
+  final globalKey = GlobalKey<FormState>();
+   var _fromLocation = '';
+  var _toLocation ='';
   late List<MapLoc> products;
+  List listItems=['Nagpur', 'Pune'  ];
+
+  late List<String> filteredRoute;
+
+
+  filterRou(String from, String to) {
+     filteredRoute = [from,to];
+
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,78 +47,73 @@ class SearchScreenState extends State<SearchScreen> {
       ),
       backgroundColor: Colors.blue.shade100,
       body: Center(
+        key: globalKey,
         child: SizedBox(
           width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              TextFormField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter start point";
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _fromLocation = value!;
-                },
-                decoration: InputDecoration(
-                  labelText: "From",
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(11),
-                    borderSide: const BorderSide(
-                      color: Colors.blue,
-                      width: 2,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(11),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                      width: 2,
-                    ),
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButton(
+                  style:const TextStyle(fontSize: 20, color: Colors.black),
+                  dropdownColor: Colors.blueAccent.shade100,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  iconSize: 23,
+                  isExpanded: true,
+                  hint: const Text("Select From"),
+                  value: _fromLocation.isNotEmpty ? _fromLocation : null,
+                  items: listItems.map((item) =>
+                      DropdownMenuItem(
+                        value: item,
+                        child: Text(item),
+                      )
+                  ).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _fromLocation = value.toString();
+                    });
+                  },
                 ),
               ),
-              const SizedBox(height: 11),
-              TextFormField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter Endpoint";
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _toLocation = value!;
-                },
-                decoration: InputDecoration(
-                  labelText: "To",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(11),
-                    borderSide: const BorderSide(
-                      color: Colors.blue,
-                    ),
-                  ),
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButton(
+                  style:const TextStyle(fontSize: 20, color: Colors.black),
+                  dropdownColor: Colors.blueAccent.shade100,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  iconSize: 23,
+                  isExpanded: true,
+                  hint: const Text("Select End Point"),
+                  value: _toLocation.isNotEmpty ? _toLocation : null,
+                  items: listItems.map((item) =>
+                      DropdownMenuItem(
+                        value: item,
+                        child: Text(item),
+                      )
+                  ).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _toLocation = value.toString();
+                    });
+                  },
                 ),
               ),
+
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   if (_fromLocation.isNotEmpty && _toLocation.isNotEmpty) {
-                    List<MapLoc> filteredRoutes = products
-                        .where((route) =>
-                            route.title
-                                .toLowerCase()
-                                .contains(_fromLocation.toLowerCase()) &&
-                            route.title
-                                .toLowerCase()
-                                .contains(_toLocation.toLowerCase()))
-                        .toList();
+
+
+                   filterRou(_fromLocation,_toLocation);
 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NextScreen(filteredRoutes),
+                        builder: (context) => NextScreen(filteredRoute),
                       ),
                     );
                   } else {

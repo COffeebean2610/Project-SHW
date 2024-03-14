@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/map_locations.dart';
 
 class NextScreen extends StatelessWidget {
-  final List<MapLoc> filteredRoutes;
+  final List<String> filteredRoutes;
 
   const NextScreen(this.filteredRoutes, {super.key});
 
@@ -17,7 +17,7 @@ class NextScreen extends StatelessWidget {
         itemCount: filteredRoutes.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(filteredRoutes[index].title),
+            title: Text(filteredRoutes[index]),
             // Add more widgets based on your MapLoc model
           );
         },
