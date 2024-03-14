@@ -113,7 +113,7 @@ class SearchScreenState extends State<SearchScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NextScreen(filteredRoute),
+                        builder: (context) => NextScreen(filteredRoute: filteredRoute,),
                       ),
                     );
                   } else {

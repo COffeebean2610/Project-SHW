@@ -16,5 +16,6 @@ class MapLoc {
     required this.linktolocation,
     required this.color,
   });
+
 }
 
