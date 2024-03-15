@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/map_locations.dart';
+import 'map_locations.dart';
 
 class NextScreen extends StatelessWidget {
   final List<MapLoc> filteredRoutes;

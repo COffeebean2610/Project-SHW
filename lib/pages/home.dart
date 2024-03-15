@@ -51,7 +51,7 @@ class HomeState extends State<Home> {
         ],
       ),
       body: const LocationsForGoogleMaps(),
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.blue.shade200,
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_shw/pages/search_function.dart';
+import 'package:project_shw/models/search_function.dart';
 import '../models/map_locations.dart'; // Make sure to import your map_locations.dart file
 
 class SearchScreen extends StatefulWidget {
