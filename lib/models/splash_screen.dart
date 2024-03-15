@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Splash Screen',
+                'Samrudhhi Roadlines',
                 style: TextStyle(color: Colors.white, fontSize: 35),
               )
             ]),
