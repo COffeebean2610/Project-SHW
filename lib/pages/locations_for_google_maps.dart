@@ -13,7 +13,12 @@ class LocationsForGoogleMaps extends StatefulWidget {
 
 class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   List<MapLoc> products = [];
-
+  final Map<String, Color> colorMap = {
+    'Colors.red': Colors.red,
+    'Colors.blue': Colors.blue,
+    'Colors.green': Colors.green,
+    // Add more colors as needed
+  };
   @override
   void initState() {
     super.initState();
@@ -29,10 +34,10 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         products = productsSnapshot.docs
             .map((doc) => MapLoc(
                   id: doc.id,
-                  title: 'title',
-                  linktolocation: doc['link'],
-                  description: 'description',
-                  color: Colors.red,
+                  title: doc['title']??"blank value",
+                  linktolocation: doc['link']??"blank Value",
+                  description: doc['description']??"blank Value",
+                  color: colorMap[doc['color']] ?? Colors.orange,
                 ))
             .toList();
       });
@@ -63,8 +68,8 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: products != null
-                ? GridView.builder(
+
+            child: GridView.builder(
                     itemCount: products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -86,10 +91,11 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                       },
                     ),
                   )
-                : Center(child: CircularProgressIndicator()),
+//                :const Center(child: CircularProgressIndicator()),
           ),
         ),
       ],
     );
   }
+
 }
