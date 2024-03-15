@@ -34,9 +34,9 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         products = productsSnapshot.docs
             .map((doc) => MapLoc(
                   id: doc.id,
-                  title: doc['title'],
-                  linktolocation: doc['link'],
-                  description: doc['description'],
+                  title: doc['title']??"blank value",
+                  linktolocation: doc['link']??"blank Value",
+                  description: doc['description']??"blank Value",
                   color: colorMap[doc['color']] ?? Colors.orange,
                 ))
             .toList();
