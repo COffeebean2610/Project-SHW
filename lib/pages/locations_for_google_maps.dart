@@ -13,7 +13,12 @@ class LocationsForGoogleMaps extends StatefulWidget {
 
 class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   List<MapLoc> products = [];
-
+  final Map<String, Color> colorMap = {
+    'Colors.red': Colors.red,
+    'Colors.blue': Colors.blue,
+    'Colors.green': Colors.green,
+    // Add more colors as needed
+  };
   @override
   void initState() {
     super.initState();
@@ -29,16 +34,17 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         products = productsSnapshot.docs
             .map((doc) => MapLoc(
                   id: doc.id,
-                  title: 'title',
-                  linktolocation: doc['link'],
-                  description: 'description',
-                  color: Colors.red,
+                  title: doc['title']??"blank value",
+                  linktolocation: doc['link']??"blank Value",
+                  description: doc['description']??"blank Value",
+                  color: colorMap[doc['color']] ?? Colors.orange,
                 ))
             .toList();
       });
     } catch (error) {
       // Handle error
           //  print("Error fetching products: $error");     for debugging purpose
+      //some changes are made here
     }
   }
 
@@ -47,7 +53,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
+          padding:const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
           child: Text(
             "Routes For Samruddhi-Mahamarg",
             style: TextStyle(
@@ -62,8 +68,8 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: products != null
-                ? GridView.builder(
+
+            child: GridView.builder(
                     itemCount: products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -79,16 +85,17 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                DetailsScreen(product: products[index]),
+                                DetailsScreen(product: products[index],link:products[index].linktolocation),
                           ),
                         );
                       },
                     ),
                   )
-                : Center(child: CircularProgressIndicator()),
+//                :const Center(child: CircularProgressIndicator()),
           ),
         ),
       ],
     );
   }
+
 }

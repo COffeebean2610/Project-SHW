@@ -4,7 +4,7 @@ import '../models/map_locations.dart';
 
 //ignore: must_be_immutable
 class NextScreen extends StatefulWidget {
-   List<String> filteredRoute;
+  List<String> filteredRoute;
   NextScreen({super.key, required this.filteredRoute});
 
   @override
