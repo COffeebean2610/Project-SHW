@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'auth/auth_screen.dart';
-import 'models/map_locations.dart';
+
 import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/map_locations.dart';
-import '../models/search_function.dart'; // Make sure to import your map_locations.dart file
+import 'package:project_shw/pages/search_function.dart';
+import '../models/map_locations.dart'; // Make sure to import your map_locations.dart file
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class SearchScreenState extends State<SearchScreen> {
   // final _fromLocationController = TextEditingController();
   // final _toLocController = TextEditingController();
   final globalKey = GlobalKey<FormState>();
-  var _fromLocation = '';
+   var _fromLocation = '';
   var _toLocation ='';
   late List<MapLoc> products;
   List listItems=['Nagpur', 'Pune'  ];
@@ -22,7 +22,7 @@ class SearchScreenState extends State<SearchScreen> {
 
 
   filterRou(String from, String to) {
-    filteredRoute = [from,to];
+     filteredRoute = [from,to];
 
   }
 
@@ -108,7 +108,7 @@ class SearchScreenState extends State<SearchScreen> {
                   if (_fromLocation.isNotEmpty && _toLocation.isNotEmpty) {
 
 
-                    filterRou(_fromLocation,_toLocation);
+                   filterRou(_fromLocation,_toLocation);
 
                     Navigator.push(
                       context,
