@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'auth/auth_screen.dart';
-import 'models/map_locations.dart';
+
 import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -21,16 +21,16 @@ void main() async {
           projectId: "samruddhi-roadlines",
         ))
       : await Firebase.initializeApp();
-  final mapLocs = await MapLinksModel('mapLinks').fetchMapLinks();
-  final products = mapLocs.map((mapLoc) {
-    return MapLoc(
-      id: mapLoc.id,
-      title: mapLoc.title,
-      description: mapLoc.description,
-      linktolocation: mapLoc.linktolocation,
-      color: mapLoc.color,
-    );
-  }).toList();
+  // // final mapLocs = await MapLinksModel('mapLinks').fetchMapLinks();
+  // //final products = mapLocs.map((mapLoc) {
+  //   return MapLoc(
+  //     id: mapLoc.id,
+  //     title: mapLoc.title,
+  //     description: mapLoc.description,
+  //     linktolocation: mapLoc.linktolocation,
+  //     color: mapLoc.color,
+  //   );
+  // }).toList();
   runApp(const MyApp());
 }
 

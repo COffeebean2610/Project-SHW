@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_shw/models/map_link_model.dart';
+
+
 
 class MapLoc {
   final String id;
@@ -16,6 +16,7 @@ class MapLoc {
     required this.linktolocation,
     required this.color,
   });
+
 }
 
 
