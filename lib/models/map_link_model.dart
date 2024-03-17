@@ -6,7 +6,7 @@ class MapLink {
 
   MapLink({required this.id, required this.link});
 
-  // Factory method to create a MapLink  instance from Firestore data
+
 }
 
 class MapLinkService {
@@ -15,14 +15,11 @@ class MapLinkService {
   Future<String> getMapLink(String mapLink) async {
     var snapshot = await db.collection('mapLinks').doc(mapLink).get();
     if (snapshot.exists) {
-      // Check if the document exists
+
       return snapshot.data()?['link'] ?? '';
     } else {
       return '';
     }
   }
-// void someFunction() async{
-//     String mapLink = await getMapLink();
-//
-// }
+
 }
