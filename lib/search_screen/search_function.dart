@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_shw/models/map_locations.dart';
-import 'package:project_shw/pages/details_screen.dart';
-import 'package:project_shw/pages/item_card.dart';
 import '../appbar/app_bar.dart';
+import '../models/map_locations.dart';
+import '../pages/details_screen.dart';
+import '../pages/item_card.dart';
 
-class LocationsForGoogleMaps extends StatefulWidget {
-  const LocationsForGoogleMaps({Key? key}) : super(key: key);
+class NextScreen extends StatefulWidget {
+  final List<String> filteredRoute;
+
+  const NextScreen({Key? key, required this.filteredRoute}) : super(key: key);
 
   @override
-  State<LocationsForGoogleMaps> createState() => _LocationsForGoogleMapsState();
+  State<NextScreen> createState() => _NextScreenState();
 }
 
-class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
-  List<MapLoc> products = [];
+class _NextScreenState extends State<NextScreen> {
+  late List<MapLoc?> products = [];
   bool isLoading = true;
+
   final Map<String, Color> colorMap = {
     'Colors.red': Colors.red,
     'Colors.blue': Colors.blue,
@@ -25,30 +28,42 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   @override
   void initState() {
     super.initState();
-    _fetchProducts();
+    if (widget.filteredRoute.length == 2) {
+      final String title = '${widget.filteredRoute[0]} to ${widget.filteredRoute[1]}';
+      _fetchProducts(title);
+    }
   }
 
-  Future<void> _fetchProducts() async {
+  Future<void> _fetchProducts(String title) async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       QuerySnapshot<Map<String, dynamic>> productsSnapshot =
       await FirebaseFirestore.instance.collection('mapLinks').get();
 
       setState(() {
-        products = productsSnapshot.docs
-            .map((doc) => MapLoc(
-          id: doc.id,
-          title: doc['title'] ?? "blank value",
-          linktolocation: doc['link'] ?? "blank Value",
-          description: doc['description'] ?? "blank Value",
-          color: colorMap[doc['color']] ?? Colors.orange,
-        ))
-            .toList();
+        products = productsSnapshot.docs.map((doc) {
+          if (title == doc['title']) {
+            return MapLoc(
+              id: doc.id,
+              title: doc['title'],
+              linktolocation: doc['link'],
+              description: doc['description'],
+              color: colorMap[doc['color']] ?? Colors.orange,
+            );
+          } else {
+            return null;
+          }
+        }).toList();
         isLoading = false;
       });
     } catch (error) {
+      setState(() {
+        isLoading = false;
+      });
       // Handle error
       //print("Error fetching products: $error");
-      // Some changes are made here
     }
   }
 
@@ -80,27 +95,31 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: GridView.builder(
-                itemCount: products.length,
+                itemCount: products.where((element) => element != null).length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 23,
                   crossAxisSpacing: 23,
                   childAspectRatio: 0.75,
                 ),
-                itemBuilder: (context, index) => ItemCard(
-                  product: products[index],
-                  press: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailsScreen(
-                          product: products[index],
-                          link: products[index].linktolocation,
-                        ),
-                      ),
+                itemBuilder: (context, index) {
+                  final product = products.where((element) => element != null).elementAt(index);
+                  if (product != null) {
+                    return ItemCard(
+                      product: product,
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(product: product, link: product.linktolocation),
+                          ),
+                        );
+                      },
                     );
-                  },
-                ),
+                  } else {
+                    return Container(); // Return an empty container if product is null
+                  }
+                },
               ),
             ),
           ),

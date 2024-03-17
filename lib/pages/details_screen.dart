@@ -3,7 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:project_shw/models/map_locations.dart';
 
-import 'search_screen.dart';
+import '../appbar/app_bar.dart';
+
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.product, required this.link});
@@ -44,32 +45,10 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       // each product have a color
       backgroundColor: Colors.blue.shade100,
-      appBar: AppBar(
-        backgroundColor: Colors.blue.shade600,
-        elevation: 0,
-        title: Text(product.title),
-        titleTextStyle: const TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 23),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.black),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SearchScreen()));
-            },
-          ),
-          const SizedBox(width: 23 / 2)
-        ],
-      ),
+      appBar:  PreferredSize(
+          preferredSize:
+          Size.fromHeight(17 * MediaQuery.of(context).devicePixelRatio),
+          child: const AppDrawerForAll( title: 'Samruddhi-Mahamarg',)),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
