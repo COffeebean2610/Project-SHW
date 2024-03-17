@@ -4,6 +4,8 @@ import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
 
+import '../appbar/app_bar.dart';
+
 class LocationsForGoogleMaps extends StatefulWidget {
   const LocationsForGoogleMaps({Key? key}) : super(key: key);
 
@@ -50,51 +52,58 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding:const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
-          child: Text(
-            "Routes For Samruddhi-Mahamarg",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Times New Roman",
-              fontStyle: FontStyle.italic,
-              fontSize: 20 * MediaQuery.of(context).size.width / 360,
+    return Scaffold(
+      appBar: PreferredSize(
+          preferredSize:
+          Size.fromHeight(17 * MediaQuery.of(context).devicePixelRatio),
+          child: const  AppDrawerForAll( title: 'Samruddhi-Mahamarg',)),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding:const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
+            child: Text(
+              "Routes For Samruddhi-Mahamarg",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Times New Roman",
+                fontStyle: FontStyle.italic,
+                fontSize: 20 * MediaQuery.of(context).size.width / 360,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
 
-            child: GridView.builder(
-                    itemCount: products.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 23,
-                      crossAxisSpacing: 23,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemBuilder: (context, index) => ItemCard(
-                      product: products[index],
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailsScreen(product: products[index],link:products[index].linktolocation),
-                          ),
-                        );
-                      },
-                    ),
-                  )
-//                :const Center(child: CircularProgressIndicator()),
+              child: GridView.builder(
+                      itemCount: products.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 23,
+                        crossAxisSpacing: 23,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) => ItemCard(
+                        product: products[index],
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailsScreen(product: products[index],link:products[index].linktolocation),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+      //                :const Center(child: CircularProgressIndicator()),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+      backgroundColor: Colors.blue.shade200,
     );
   }
 
