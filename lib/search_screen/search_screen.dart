@@ -28,7 +28,7 @@ class SearchScreenState extends State<SearchScreen> {
     "Yavatmal-Amravati",
     "Karanja lad",
     "Seloo Bazar",
-    "Malegaon_jahangir",
+    "Malegaon-Jahangir",
     "Mehkar",
     "Dusarbid",
     "Sindhkhed Raja",
@@ -37,7 +37,7 @@ class SearchScreenState extends State<SearchScreen> {
     "Aurangabad (Sambhaji nagar)",
     "Verul",
     "Lasur",
-    "Vijapur",
+    "Vaijapur",
     "Shirdi",
     "Sinnar",
     "Nashik Connector",
@@ -64,7 +64,13 @@ class SearchScreenState extends State<SearchScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Select the path you want to follow", style: Theme.of(context).textTheme.headlineSmall),
+              Text(
+                "Select the path you want to follow",
+                style: TextStyle(fontWeight: FontWeight.bold,
+                    fontSize: 8*MediaQuery.of(context).devicePixelRatio
+                ),
+
+              ),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -139,13 +145,14 @@ class SearchScreenState extends State<SearchScreen> {
                 child: const Text('Search'),
               ),
               SizedBox(
-                height: 160*MediaQuery.of(context).devicePixelRatio,
+                height: 160 * MediaQuery.of(context).devicePixelRatio,
               ),
               ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue.shade600),
-                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                ),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.blue.shade600),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,

@@ -1,17 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../appbar/app_bar.dart';
 import '../models/map_locations.dart';
 import '../pages/details_screen.dart';
 import '../pages/item_card.dart';
 
-//ignore: must_be_immutable
 class NextScreen extends StatefulWidget {
   final List<String> filteredRoute;
 
-  NextScreen({Key? key, required this.filteredRoute}) : super(key: key);
-
-
+  const NextScreen({Key? key, required this.filteredRoute}) : super(key: key);
 
   @override
   State<NextScreen> createState() => _NextScreenState();
@@ -19,6 +16,7 @@ class NextScreen extends StatefulWidget {
 
 class _NextScreenState extends State<NextScreen> {
   late List<MapLoc?> products = [];
+  bool isLoading = true;
 
   final Map<String, Color> colorMap = {
     'Colors.red': Colors.red,
@@ -27,22 +25,19 @@ class _NextScreenState extends State<NextScreen> {
     // Add more colors as needed
   };
 
-
-
   @override
   void initState() {
-    print(widget.filteredRoute);
+    super.initState();
     if (widget.filteredRoute.length == 2) {
       final String title = '${widget.filteredRoute[0]} to ${widget.filteredRoute[1]}';
-      print(title);
       _fetchProducts(title);
     }
-    super.initState();
   }
 
   Future<void> _fetchProducts(String title) async {
-    print(widget.filteredRoute);
-
+    setState(() {
+      isLoading = true;
+    });
     try {
       QuerySnapshot<Map<String, dynamic>> productsSnapshot =
       await FirebaseFirestore.instance.collection('mapLinks').get();
@@ -61,10 +56,14 @@ class _NextScreenState extends State<NextScreen> {
             return null;
           }
         }).toList();
+        isLoading = false;
       });
     } catch (error) {
+      setState(() {
+        isLoading = false;
+      });
       // Handle error
-      print("Error fetching products: $error");
+      //print("Error fetching products: $error");
     }
   }
 
@@ -76,10 +75,8 @@ class _NextScreenState extends State<NextScreen> {
         child: const AppDrawerForAll(title: 'Samruddhi-Mahamarg'),
       ),
       body: Column(
-
         children: <Widget>[
           Padding(
-
             padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
             child: Text(
               "Routes For Samruddhi-Mahamarg",
@@ -93,10 +90,12 @@ class _NextScreenState extends State<NextScreen> {
             ),
           ),
           Expanded(
-            child: Padding(
+            child: isLoading
+                ? const Center(child: CircularProgressIndicator()) // Loading indicator
+                : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: GridView.builder(
-                itemCount: products.length,
+                itemCount: products.where((element) => element != null).length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 23,
@@ -104,7 +103,7 @@ class _NextScreenState extends State<NextScreen> {
                   childAspectRatio: 0.75,
                 ),
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final product = products.where((element) => element != null).elementAt(index);
                   if (product != null) {
                     return ItemCard(
                       product: product,
@@ -118,8 +117,7 @@ class _NextScreenState extends State<NextScreen> {
                       },
                     );
                   } else {
-                    // Return an empty container if product is null
-                    return Container();
+                    return Container(); // Return an empty container if product is null
                   }
                 },
               ),
@@ -127,7 +125,7 @@ class _NextScreenState extends State<NextScreen> {
           ),
         ],
       ),
-        backgroundColor: Colors.blue.shade200,
+      backgroundColor: Colors.blue.shade200,
     );
   }
 }
