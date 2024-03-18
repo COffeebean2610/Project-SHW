@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_shw/pages/locations_for_google_maps.dart';
+//import 'package:project_shw/pages/locations_for_google_maps.dart';
 import 'package:project_shw/search_screen/search_function.dart';
 import '../models/map_locations.dart'; // Make sure to import your map_locations.dart file
 
@@ -18,32 +18,32 @@ class SearchScreenState extends State<SearchScreen> {
   var _toLocation = '';
   late List<MapLoc> products;
   List listItems = [
-    'Nagpur',
-    "Khrud",
-    'MIDC Buti Bori',
-    'Sindhi Dry Port',
-    'Wardha',
+
     "Ari-Pulgaon",
+    "Bhiwandi",
     "DhamanGaon Railway Station",
-    "Yavatmal-Amravati",
+    "Dusarbid",
+    "Igatpuri",
+    "Jalna",
     "Karanja lad",
-    "Seloo Bazar",
+    "Khrud",
+    "Lasur",
     "Malegaon-Jahangir",
     "Mehkar",
-    "Dusarbid",
+    "MIDC Buti Bori",
+    "Nagpur",
+    "Nashik Connector",
+    "Seloo Bazar",
     "Sindhkhed Raja",
-    "Jalna",
+    "Sindhi Dry Port",
+    "Shahpur",
     "Shendra MIDC",
-    "Aurangabad (Sambhaji nagar)",
-    "Verul",
-    "Lasur",
-    "Vaijapur",
     "Shirdi",
     "Sinnar",
-    "Nashik Connector",
-    "Igatpuri",
-    "Shahpur",
-    "Bhiwandi"
+    "Verul",
+    "Vaijapur",
+    "Wardha",
+    "Yavatmal-Amravati"
   ];
 
   late List<String> filteredRoute;
@@ -56,113 +56,153 @@ class SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade100,
-      body: Center(
-        key: globalKey,
-        child: SizedBox(
-          width: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Select the path you want to follow",
-                style: TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 8*MediaQuery.of(context).devicePixelRatio
-                ),
 
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DropdownButton(
-                  style: const TextStyle(fontSize: 20, color: Colors.black),
-                  dropdownColor: Colors.blueAccent.shade100,
-                  icon: const Icon(Icons.arrow_drop_down),
-                  iconSize: 23,
-                  isExpanded: true,
-                  hint: const Text("Select From"),
-                  value: _fromLocation.isNotEmpty ? _fromLocation : null,
-                  items: listItems
-                      .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(item),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _fromLocation = value.toString();
-                    });
-                  },
-                ),
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DropdownButton(
-                  style: const TextStyle(fontSize: 20, color: Colors.black),
-                  dropdownColor: Colors.blueAccent.shade100,
-                  icon: const Icon(Icons.arrow_drop_down),
-                  iconSize: 23,
-                  isExpanded: true,
-                  hint: const Text("Select End Point"),
-                  value: _toLocation.isNotEmpty ? _toLocation : null,
-                  items: listItems
-                      .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(item),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _toLocation = value.toString();
-                    });
-                  },
-                ),
-              ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  if (_fromLocation.isNotEmpty && _toLocation.isNotEmpty) {
-                    filterRou(_fromLocation, _toLocation);
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [Colors.grey.shade900,Colors.grey.shade900],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.1,0.9],
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NextScreen(
-                          filteredRoute: filteredRoute,
-                        ),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                            'Please enter both "From" and "To" locations.'),
-                      ),
-                    );
-                  }
-                },
-                child: const Text('Search'),
-              ),
-              SizedBox(
-                height: 160 * MediaQuery.of(context).devicePixelRatio,
-              ),
-              ElevatedButton(
+
+            )
+        ),
+        child: Center(
+          key: globalKey,
+          child: SizedBox(
+            width: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: Text(
+                    "Select the path you want to follow",
+                    style: TextStyle(
+                        fontFamily: "Times New Roman",
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 40 * MediaQuery.of(context).size.aspectRatio),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton(
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                    dropdownColor: Colors.blueAccent.shade100,
+                    icon: const Icon(
+                      Icons.arrow_drop_down_circle_rounded,
+                      color: Colors.amber,
+                    ),
+                    iconSize: 23,
+                    isExpanded: true,
+                    hint: const Text(
+                      "Select From",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    value: _fromLocation.isNotEmpty ? _fromLocation : null,
+                    items: listItems
+                        .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(item),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _fromLocation = value.toString();
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Padding(
+
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton(
+
+                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                    dropdownColor: Colors.blueAccent.shade100,
+                    icon: const Icon(Icons.arrow_drop_down_circle_rounded,
+                        color: Colors.amber),
+                    iconSize: 23,
+                    isExpanded: true,
+                    hint: const Text(
+                      "Select End Point",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    value: _toLocation.isNotEmpty ? _toLocation : null,
+                    items: listItems
+                        .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(item,style: TextStyle(color: Colors.white),),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _toLocation = value.toString();
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.blue.shade600),
+                    fixedSize: MaterialStateProperty.all(const Size(160, 20)),
+                    backgroundColor: MaterialStateProperty.all(Colors.amber),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LocationsForGoogleMaps(),
-                      ),
-                    );
+                    if (_fromLocation.isNotEmpty && _toLocation.isNotEmpty) {
+                      filterRou(_fromLocation, _toLocation);
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NextScreen(
+                            filteredRoute: filteredRoute,
+                          ),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Please enter both "From" and "To" locations.',
+                          ),
+                        ),
+                      );
+                    }
                   },
-                  child: const Text('See All Routes')),
-            ],
+                  child: const Text(
+                    'Search',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 300 * MediaQuery.of(context).size.height / 800,
+                ),
+                // ElevatedButton(
+                //     style: ButtonStyle(
+                //       backgroundColor:
+                //           MaterialStateProperty.all(Colors.blue.shade600),
+                //       foregroundColor: MaterialStateProperty.all(Colors.white),
+                //     ),
+                //     onPressed: () {
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => const LocationsForGoogleMaps(),
+                //         ),
+                //       );
+                //     },
+                //     child: const Text('See All Routes')),
+              ],
+            ),
           ),
         ),
       ),

@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'auth/auth_screen.dart';
 
+import 'loading_screen/splash_screen.dart';
 import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
-
+  runApp(const SplashScreen());
 
   Platform.isAndroid
       ? await Firebase.initializeApp(

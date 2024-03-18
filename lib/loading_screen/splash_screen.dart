@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../pages/home.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 10), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const Home()),
       );
@@ -33,26 +31,27 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.blue, Colors.pink],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.blue, Colors.pink],
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft),
+          ),
+          child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Samrudhhi Roadlines',
+                  style: TextStyle(color: Colors.white, fontSize: 35),
+                )
+              ]),
         ),
-        child: const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Samrudhhi Roadlines',
-                style: TextStyle(color: Colors.white, fontSize: 35),
-              )
-            ]),
       ),
     );
   }
 }
-
-
