@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../pages/home.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}): super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

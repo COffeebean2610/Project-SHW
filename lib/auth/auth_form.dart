@@ -25,9 +25,8 @@ class AuthFormState extends State<AuthForm> {
 
     if (validity) {
       _formKey.currentState!.save();
-      submitform(_email, _password, _username);
-    }
-    else{
+      submitForm(_email, _password, _username);
+    } else {
       Fluttertoast.showToast(
           msg: "Invalid Credentials",
           toastLength: Toast.LENGTH_LONG,
@@ -45,7 +44,7 @@ class AuthFormState extends State<AuthForm> {
     });
   }
 
-  submitform(String email, String password, String username) async {
+  submitForm(String email, String password, String username) async {
     final auth = FirebaseAuth.instance;
     UserCredential authResult;
     try {
@@ -82,11 +81,6 @@ class AuthFormState extends State<AuthForm> {
       width: MediaQuery.of(context).size.width,
       child: ListView(
         children: [
-          // Container(
-          //     height: 200,
-          //     margin: const EdgeInsets.all(20),
-          //     child: Image.asset("assets/images/todo.png")
-          // ),
           Container(
             padding: const EdgeInsets.all(10),
             child: Form(

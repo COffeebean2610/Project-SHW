@@ -1,5 +1,3 @@
-
-
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:project_shw/pages/locations_for_google_maps.dart";
@@ -13,18 +11,14 @@ class AppDrawerForAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       backgroundColor: Colors.amber,
       elevation: 0,
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.orange, Colors.amber],
-            begin: Alignment.topLeft,
-            end: Alignment.topCenter
-          )
-        )
-      ),
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.orange, Colors.amber],
+                  begin: Alignment.topLeft,
+                  end: Alignment.topCenter))),
       title: Text(
         "Samruddhi Roadlines",
         style: TextStyle(
@@ -52,11 +46,7 @@ class AppDrawerForAll extends StatelessWidget {
         //         },
         //       ),
         IconButton(
-          icon: const Icon(
-            Icons.search,
-            size: 30,
-              color: Colors.black
-          ),
+          icon: const Icon(Icons.search, size: 30, color: Colors.black),
           onPressed: () {
             Navigator.push(
               context,
@@ -67,7 +57,10 @@ class AppDrawerForAll extends StatelessWidget {
           },
         ),
         IconButton(
-          icon: const Icon(Icons.logout,color: Colors.black,),
+          icon: const Icon(
+            Icons.logout,
+            color: Colors.black,
+          ),
           onPressed: () async {
             await FirebaseAuth.instance.signOut();
           },
@@ -76,15 +69,13 @@ class AppDrawerForAll extends StatelessWidget {
       leading: PopupMenuButton(itemBuilder: (context) {
         return [
           PopupMenuItem(
-
-            child: Text("See All Routes"),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const LocationsForGoogleMaps()));
-            }
-          ),
+              child: Text("See All Routes"),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LocationsForGoogleMaps()));
+              }),
         ];
       }),
     );
