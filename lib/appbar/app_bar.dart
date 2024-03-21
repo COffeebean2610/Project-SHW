@@ -1,5 +1,3 @@
-
-
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:project_shw/pages/locations_for_google_maps.dart";
@@ -13,18 +11,14 @@ class AppDrawerForAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       backgroundColor: Colors.amber,
       elevation: 0,
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.orange, Colors.amber],
-            begin: Alignment.topLeft,
-            end: Alignment.topCenter
-          )
-        )
-      ),
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.orange, Colors.amber],
+                  begin: Alignment.topLeft,
+                  end: Alignment.topCenter))),
       title: Text(
         "Samruddhi Roadlines",
         style: TextStyle(
@@ -52,11 +46,7 @@ class AppDrawerForAll extends StatelessWidget {
         //         },
         //       ),
         IconButton(
-          icon: const Icon(
-            Icons.search,
-            size: 30,
-              color: Colors.black
-          ),
+          icon: const Icon(Icons.search, size: 30, color: Colors.black),
           onPressed: () {
             Navigator.push(
               context,
@@ -93,23 +83,23 @@ class AppDrawerForAll extends StatelessWidget {
   void handleClick(String value,BuildContext context) {
     switch (value) {
       case 'Logout':
-      logout();
+        logout();
         break;
       case 'see all routes':
-      locations(context);
+        locations(context);
         break;
     }
 
   }
   void logout () async{
-       await FirebaseAuth.instance.signOut();
-      }
+    await FirebaseAuth.instance.signOut();
+  }
 
-      void locations (BuildContext context){
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LocationsForGoogleMaps(),
-          ),
-        );}
+  void locations (BuildContext context){
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LocationsForGoogleMaps(),
+      ),
+    );}
 }
