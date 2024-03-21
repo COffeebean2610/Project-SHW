@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_shw/models/map_locations.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({super.key, required this.product, required this.press});
+  const ItemCard({Key? key, required this.product, required this.press})
+      : super(key: key);
 
   final MapLoc product;
   final VoidCallback press;
@@ -11,43 +12,38 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(23),
-              decoration: BoxDecoration(
-                color: product.color,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.9), // Set shadow color
-                    spreadRadius: 3, // Set the spread radius of the shadow
-                    blurRadius: 9, // Set the blur radius of the shadow
-                    offset: const Offset(0, 5), // Set the offset of the shadow
+      child: Container(
+        width: 200, // Set your desired width
+        height: 200, // Set your desired height
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(23),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.amber,
+                    width: 2.0,
                   ),
-                ],
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Hero(
-                tag: product.id,
-                child: Text(product.description),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.9), // Set shadow color
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(23),
+                ),
+                child: Hero(
+                  tag: product.id,
+                  child: Text(
+                    product.title,
+                    style:const TextStyle(color: Colors.amber,fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 23 / 4),
-            child: Text(
-              // products is out demo list
-              product.title,
-
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -67,7 +67,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
             child: Text(
               "Routes For Samruddhi-Mahamarg",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.amber,
                 fontWeight: FontWeight.bold,
                 fontFamily: "Times New Roman",
                 fontStyle: FontStyle.italic,
