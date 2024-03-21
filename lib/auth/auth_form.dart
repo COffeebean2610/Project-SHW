@@ -32,8 +32,8 @@ class AuthFormState extends State<AuthForm> {
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blue.shade600,
-          textColor: Colors.black,
+          backgroundColor: Colors.amber,
+          textColor: Colors.white,
           fontSize: 16.0);
     }
   }
@@ -67,7 +67,7 @@ class AuthFormState extends State<AuthForm> {
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blue.shade600,
-          textColor: Colors.black,
+          textColor: Colors.white,
           fontSize: 16.0);
       rethrow;
     }
@@ -97,8 +97,10 @@ class AuthFormState extends State<AuthForm> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 borderSide:
-                                    BorderSide(color: Colors.black, width: 2)),
+                                    BorderSide(color: Colors.white, width: 2)),
                             labelText: "Username",
+                            labelStyle: TextStyle(color:Colors.white),
+
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -120,8 +122,10 @@ class AuthFormState extends State<AuthForm> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                               borderSide:
-                                  BorderSide(color: Colors.black, width: 2)),
+                                  BorderSide(color: Colors.white, width: 2)),
                           labelText: "Email",
+                          labelStyle: TextStyle(color:Colors.white),
+
                         ),
                         validator: (value) {
                           if (value!.isEmpty || !value.contains("@")) {
@@ -136,16 +140,21 @@ class AuthFormState extends State<AuthForm> {
                       height: 10,
                     ),
                     TextFormField(
+                      style: TextStyle(color: Colors.lightBlue),
                         obscureText: passwordVisible,
                         keyboardType: TextInputType.emailAddress,
                         key: const ValueKey("password"),
                         decoration: InputDecoration(
+
                           border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                               borderSide:
-                                  BorderSide(color: Colors.black, width: 2)),
+                                  BorderSide(color: Colors.white, width: 2)),
                           labelText: "Password",
+
+                          labelStyle: TextStyle(color:Colors.white),
+
                           suffixIcon: IconButton(
                             onPressed: togglePasswordVisibility,
                             icon: Icon(passwordVisible
@@ -157,6 +166,7 @@ class AuthFormState extends State<AuthForm> {
                           if (value!.isEmpty) {
                             return "Please enter Password";
                           }
+
                           return null;
                         },
                         onSaved: (value) {
@@ -170,7 +180,7 @@ class AuthFormState extends State<AuthForm> {
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: Colors.amber,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             )),
@@ -199,11 +209,11 @@ class AuthFormState extends State<AuthForm> {
                       child: isLoginPage
                           ? const Text(
                               "Not a user?",
-                              style: TextStyle(color: Colors.green),
+                              style: TextStyle(color: Colors.white),
                             )
                           : const Text(
                               "already a user?",
-                              style: TextStyle(color: Colors.green),
+                              style: TextStyle(color: Colors.white),
                             ),
                       onPressed: () {
                         setState(() {
