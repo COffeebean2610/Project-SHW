@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -72,6 +73,44 @@ class AuthFormState extends State<AuthForm> {
       rethrow;
     }
   }
+  signInWithGoogle() async {
+    try {
+      // Trigger the Google Sign-In flow.
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Get the authentication details from the signed in user.
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      // Create a credential from the access token and ID token obtained.
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Authenticate with Firebase using the obtained credential.
+      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // Check if the user is a new user.
+      if (userCredential.additionalUserInfo!.isNewUser) {
+        // If it's a new user, navigate to a registration page or perform additional actions.
+        // For example, you can navigate to a registration page passing necessary data.
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+
+        // In this example, I'm printing a message indicating the user is new.
+        print('New user signed in with Google!');
+      } else {
+        // If it's an existing user, navigate to the main page or perform necessary actions.
+        // For example, you can navigate to the home page.
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+
+        // In this example, I'm printing a message indicating the user is existing.
+        print('Existing user signed in with Google!');
+      }
+    } catch (e) {
+      // Handle errors if any.
+      print('Error signing in with Google: $e');
+    }
+  }
 
   //widget build
   @override
@@ -140,7 +179,7 @@ class AuthFormState extends State<AuthForm> {
                       height: 10,
                     ),
                     TextFormField(
-                      style: TextStyle(color: Colors.lightBlue),
+                      style: const TextStyle(color: Colors.lightBlue),
                         obscureText: passwordVisible,
                         keyboardType: TextInputType.emailAddress,
                         key: const ValueKey("password"),
@@ -153,7 +192,7 @@ class AuthFormState extends State<AuthForm> {
                                   BorderSide(color: Colors.white, width: 2)),
                           labelText: "Password",
 
-                          labelStyle: TextStyle(color:Colors.white),
+                          labelStyle: const TextStyle(color:Colors.white),
 
                           suffixIcon: IconButton(
                             onPressed: togglePasswordVisibility,
@@ -205,6 +244,10 @@ class AuthFormState extends State<AuthForm> {
                     const SizedBox(
                       height: 10,
                     ),
+                      ElevatedButton(onPressed:signInWithGoogle, child:const Text("Sign In with google",),),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     TextButton(
                       child: isLoginPage
                           ? const Text(
@@ -227,5 +270,6 @@ class AuthFormState extends State<AuthForm> {
         ],
       ),
     );
+
   }
 }

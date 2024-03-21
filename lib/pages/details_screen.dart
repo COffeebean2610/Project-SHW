@@ -44,7 +44,7 @@ class DetailsScreen extends StatelessWidget {
     //final Size textSize = MediaQuery.of(context).size;
     return Scaffold(
       // each product have a color
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.grey.shade900,
       appBar:  PreferredSize(
           preferredSize:
           Size.fromHeight(17 * MediaQuery.of(context).devicePixelRatio),
@@ -67,25 +67,37 @@ class DetailsScreen extends StatelessWidget {
                       right: 23,
                     ),
                     // height: 500,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade900,
+
+                      borderRadius:const BorderRadius.all(
                         Radius.circular(23),
                       ),
+
                     ),
+
                   ),
                   Container(
+                    
                     margin: const EdgeInsets.only(
-                        top: 12, bottom: 90, left: 12, right: 12),
+                        top: 50, bottom: 90, left: 12, right: 12),
                     padding: const EdgeInsets.only(
                       top: 50,
+                      bottom: 50,
                       left: 23,
                       right: 23,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      border: Border.all(
+                        color: Colors.amber,
+                        width: 1.2
+                      )
                     ),
                     child: Text(
                       product.description,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 18 *
                             MediaQuery.of(context).size.width /
                             360, //different for all screens error
@@ -94,25 +106,25 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        top: 530 * MediaQuery.of(context).size.width / 360,
-                        left: 12,
-                        right: 12,
-                        bottom: 10),
-                    padding: const EdgeInsets.all(3),
+                        top: 530 * MediaQuery.of(context).size.aspectRatio,
+                        left: 300 * MediaQuery.of(context).size.aspectRatio,
+                        right: 12 * MediaQuery.of(context).size.aspectRatio,
+                        bottom: 10 * MediaQuery.of(context).size.aspectRatio),
+                    padding: const EdgeInsets.all(6),
                     child: ElevatedButton(
                       onPressed: () {
                         //open googlemaps
                         launchboth();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Colors.amber,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(80)),
                         ),
                       ),
                       child: const Text(
                         "Go To Map",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),

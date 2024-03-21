@@ -15,7 +15,7 @@ class NextScreen extends StatefulWidget {
 }
 
 class _NextScreenState extends State<NextScreen> {
-  late List<MapLoc?> products = [];
+  List<MapLoc?> products = [];
   bool isLoading = true;
 
   final Map<String, Color> colorMap = {
@@ -55,15 +55,15 @@ class _NextScreenState extends State<NextScreen> {
           } else {
             return null;
           }
-        }).toList();
+        }).where((element) => element != null).toList(); // Filter out null values
         isLoading = false;
       });
     } catch (error) {
       setState(() {
         isLoading = false;
       });
-      // Handle error
-      //print("Error fetching products: $error");
+      // Handle error gracefully
+      print("Error fetching products: $error");
     }
   }
 
@@ -81,7 +81,7 @@ class _NextScreenState extends State<NextScreen> {
             child: Text(
               "Routes For Samruddhi-Mahamarg",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.amber,
                 fontWeight: FontWeight.bold,
                 fontFamily: "Times New Roman",
                 fontStyle: FontStyle.italic,
@@ -94,38 +94,43 @@ class _NextScreenState extends State<NextScreen> {
                 ? const Center(child: CircularProgressIndicator()) // Loading indicator
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: GridView.builder(
-                itemCount: products.where((element) => element != null).length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 23,
-                  crossAxisSpacing: 23,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) {
-                  final product = products.where((element) => element != null).elementAt(index);
-                  if (product != null) {
-                    return ItemCard(
-                      product: product,
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailsScreen(product: product, link: product.linktolocation),
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    return Container(); // Return an empty container if product is null
-                  }
+              child: GestureDetector(
+                onTap: () {
+                  // Handle tap action here
                 },
+                child: GridView.builder(
+                  itemCount: products.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 23,
+                    crossAxisSpacing: 23,
+                    childAspectRatio: 0.75,
+                  ),
+                  itemBuilder: (context, index) {
+                    final product = products[index];
+                    if (product != null) {
+                      return ItemCard(
+                        product: product,
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsScreen(product: product, link: product.linktolocation),
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return Container(); // Return an empty container if product is null
+                    }
+                  },
+                ),
               ),
             ),
           ),
         ],
       ),
-      backgroundColor: Colors.blue.shade200,
+      backgroundColor: Colors.grey.shade900,
     );
   }
 }
