@@ -128,6 +128,9 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                    
+
                 ],
               ),
             ),
