@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "631352079526",
+    "firebase_url": "https://samruddhi-roadlines-default-rtdb.firebaseio.com",
     "project_id": "samruddhi-roadlines",
     "storage_bucket": "samruddhi-roadlines.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.dhunters.project_shw"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "631352079526-gvgf3kc1lag85lce352k70vpl52vgrem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCyIQ7dsZVHg37gcBiAsK2K5Ev4bShYZ7c"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631352079526-gvgf3kc1lag85lce352k70vpl52vgrem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
