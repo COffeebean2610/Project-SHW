@@ -202,7 +202,13 @@ class SearchScreenState extends State<SearchScreen> {
                 //       );
                 //     },
                 //     child: const Text('See All Routes')),
-              ],
+          Image.asset(
+            "assets/images/logo.png",
+            // Make sure to provide the correct path to your image asset
+            // Also, you can adjust the width and height of the image as needed
+
+          ),
+          ]
             ),
           ),
         ),

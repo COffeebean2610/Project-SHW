@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const Home()),
       );
@@ -38,18 +38,26 @@ class _SplashScreenState extends State<SplashScreen>
           width: double.infinity,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.blue, Colors.pink],
+                colors: [Colors.amber, Colors.white],
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft),
           ),
-          child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Samrudhhi Roadlines',
-                  style: TextStyle(color: Colors.white, fontSize: 35),
-                )
-              ]),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Container(
+                padding: EdgeInsets.only(top:50),
+                child:  Image.asset(
+                  "assets/images/logo.png",
+),
+              ),
+              const Text(
+                'Samrudhhi Roadlines',
+                style: TextStyle(color: Colors.black, fontSize: 35),
+              )
+            ],
+          ),
         ),
       ),
     );

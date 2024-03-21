@@ -12,7 +12,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Container(
+      child: SizedBox(
         width: 200, // Set your desired width
         height: 200, // Set your desired height
         child: Column(
