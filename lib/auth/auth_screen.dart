@@ -16,16 +16,16 @@ class AuthScreenState extends State<AuthScreen> {
         title: const Text(
           'Authentication',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontFamily: "Times New Roman",
             fontStyle: FontStyle.italic,
           ),
         ),
-        backgroundColor: Colors.blue.shade700,
+        backgroundColor: Colors.grey.shade900,
       ),
       body: const AuthForm(),
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.grey.shade800,
     );
   }
 }

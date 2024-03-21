@@ -4,13 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'auth/auth_screen.dart';
-
+import 'loading_screen/splash_screen.dart';
 import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
-
+  runApp(const SplashScreen());
 
   Platform.isAndroid
       ? await Firebase.initializeApp(
@@ -52,8 +53,8 @@ class MyApp extends StatelessWidget {
                     toastLength: Toast.LENGTH_LONG,
                     gravity: ToastGravity.BOTTOM,
                     timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.blue.shade600,
-                    textColor: Colors.black,
+                    backgroundColor: Colors.amber,
+                    textColor: Colors.white,
                     fontSize: 16.0);
                 return const AuthScreen();
               }

@@ -18,7 +18,7 @@ class HomeState extends State<Home> {
               Size.fromHeight(17 * MediaQuery.of(context).devicePixelRatio),
           child: const AppDrawerForAll( title: 'Samruddhi-Mahamarg',)),
       body: const SearchScreen(),
-      backgroundColor: Colors.blue.shade200,
+      backgroundColor: Colors.black,
     );
   }
 }
