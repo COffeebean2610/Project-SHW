@@ -20,6 +20,7 @@ class SearchScreenState extends State<SearchScreen> {
   List listItems = [
 
     "Ari-Pulgaon",
+    "Aurangabad",
     "Bhiwandi",
     "DhamanGaon Railway Station",
     "Dusarbid",

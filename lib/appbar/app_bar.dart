@@ -66,27 +66,50 @@ class AppDrawerForAll extends StatelessWidget {
             );
           },
         ),
-        IconButton(
-          icon: const Icon(Icons.logout,color: Colors.black,),
-          onPressed: () async {
-            await FirebaseAuth.instance.signOut();
+        PopupMenuButton<String>(
+          onSelected: (String choice) {
+            handleClick(choice, context);
+          },
+          itemBuilder: (BuildContext context) {
+            return {'Logout', 'see all routes'}.map((String choice) {
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
           },
         ),
+        // IconButton(
+        //   icon: const Icon(Icons.logout,color: Colors.black,),
+        //   onPressed: () async {
+        //     await FirebaseAuth.instance.signOut();
+        //   },
+        // ),
       ],
-      leading: PopupMenuButton(itemBuilder: (context) {
-        return [
-          PopupMenuItem(
 
-            child: Text("See All Routes"),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const LocationsForGoogleMaps()));
-            }
-          ),
-        ];
-      }),
+
     );
   }
+  void handleClick(String value,BuildContext context) {
+    switch (value) {
+      case 'Logout':
+      logout();
+        break;
+      case 'see all routes':
+      locations(context);
+        break;
+    }
+
+  }
+  void logout () async{
+       await FirebaseAuth.instance.signOut();
+      }
+
+      void locations (BuildContext context){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LocationsForGoogleMaps(),
+          ),
+        );}
 }
