@@ -105,6 +105,8 @@ class AuthFormState extends State<AuthForm> {
                                 borderSide:
                                     BorderSide(color: Colors.white, width: 2)),
                             labelText: "Username",
+                            labelStyle: TextStyle(color:Colors.white),
+
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -128,6 +130,8 @@ class AuthFormState extends State<AuthForm> {
                               borderSide:
                                   BorderSide(color: Colors.white, width: 2)),
                           labelText: "Email",
+                          labelStyle: TextStyle(color:Colors.white),
+
                         ),
                         validator: (value) {
                           if (value!.isEmpty || !value.contains("@")) {
@@ -168,6 +172,7 @@ class AuthFormState extends State<AuthForm> {
                           if (value!.isEmpty) {
                             return "Please enter Password";
                           }
+
                           return null;
                         },
                         onSaved: (value) {

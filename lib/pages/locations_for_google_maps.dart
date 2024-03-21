@@ -16,9 +16,10 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   List<MapLoc> products = [];
   bool isLoading = true;
   final Map<String, Color> colorMap = {
-    'Colors.red': Colors.red,
-    'Colors.blue': Colors.blue,
-    'Colors.green': Colors.green,
+    'Colors.white': Colors.white,
+    'Colors.white': Colors.white,
+    'Colors.white': Colors.white,
+
     // Add more colors as needed
   };
 
@@ -40,7 +41,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
           title: doc['title'] ?? "blank value",
           linktolocation: doc['link'] ?? "blank Value",
           description: doc['description'] ?? "blank Value",
-          color: colorMap[doc['color']] ?? Colors.orange,
+          color: colorMap[doc['color']] ?? Colors.grey.shade100,
         ))
             .toList();
         isLoading = false;
@@ -106,7 +107,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
           ),
         ],
       ),
-      backgroundColor: Colors.blue.shade200,
+      backgroundColor: Colors.grey.shade900,
     );
   }
 }

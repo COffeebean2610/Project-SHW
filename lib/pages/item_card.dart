@@ -42,7 +42,7 @@ class ItemCard extends StatelessWidget {
               product.title,
 
               style: const TextStyle(
-                  color: Colors.deepOrange,
+                  color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
             ),
