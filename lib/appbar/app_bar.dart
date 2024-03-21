@@ -64,10 +64,20 @@ class AppDrawerForAll extends StatelessWidget {
             return {'Logout', 'see all routes'}.map((String choice) {
               return PopupMenuItem<String>(
                 value: choice,
-                child: Text(choice),
+                child: Text(
+                  choice,
+                  style: const TextStyle(color: Colors.white),
+                ),
               );
             }).toList();
           },
+          color: Colors.amber,
+          position: PopupMenuPosition.under,
+          offset:const Offset(0, 16),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                  23 * MediaQuery.of(context).size.aspectRatio)),
+          elevation: 4,
         ),
         // IconButton(
         //   icon: const Icon(Icons.logout,color: Colors.black,),
@@ -76,11 +86,10 @@ class AppDrawerForAll extends StatelessWidget {
         //   },
         // ),
       ],
-
-
     );
   }
-  void handleClick(String value,BuildContext context) {
+
+  void handleClick(String value, BuildContext context) {
     switch (value) {
       case 'Logout':
         logout();
@@ -89,17 +98,18 @@ class AppDrawerForAll extends StatelessWidget {
         locations(context);
         break;
     }
-
   }
-  void logout () async{
+
+  void logout() async {
     await FirebaseAuth.instance.signOut();
   }
 
-  void locations (BuildContext context){
+  void locations(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const LocationsForGoogleMaps(),
       ),
-    );}
+    );
+  }
 }
