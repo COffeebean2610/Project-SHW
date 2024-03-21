@@ -92,7 +92,7 @@ class SearchScreenState extends State<SearchScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButton(
                     style: const TextStyle(fontSize: 20, color: Colors.white),
-                    dropdownColor: Colors.blueAccent.shade100,
+                    dropdownColor: Colors.amber,
                     icon: const Icon(
                       Icons.arrow_drop_down_circle_rounded,
                       color: Colors.amber,
@@ -124,7 +124,7 @@ class SearchScreenState extends State<SearchScreen> {
                   child: DropdownButton(
 
                     style: const TextStyle(fontSize: 20, color: Colors.black),
-                    dropdownColor: Colors.blueAccent.shade100,
+                    dropdownColor: Colors.amber,
                     icon: const Icon(Icons.arrow_drop_down_circle_rounded,
                         color: Colors.amber),
                     iconSize: 23,

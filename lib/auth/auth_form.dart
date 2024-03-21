@@ -32,7 +32,7 @@ class AuthFormState extends State<AuthForm> {
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blue.shade600,
+          backgroundColor: Colors.amber,
           textColor: Colors.white,
           fontSize: 16.0);
     }
