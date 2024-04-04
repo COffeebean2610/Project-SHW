@@ -61,12 +61,12 @@ class AppDrawerForAll extends StatelessWidget {
             handleClick(choice, context);
           },
           itemBuilder: (BuildContext context) {
-            return {'Logout', 'see all routes'}.map((String choice) {
+            return {'Logout', 'See All Routes'}.map((String choice) {
               return PopupMenuItem<String>(
                 value: choice,
                 child: Text(
                   choice,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.black,fontSize:13,fontWeight: FontWeight.bold),
                 ),
               );
             }).toList();

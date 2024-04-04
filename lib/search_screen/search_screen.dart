@@ -185,7 +185,7 @@ class SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 300 * MediaQuery.of(context).size.height / 800,
+                  height: 680 * MediaQuery.of(context).size.aspectRatio,
                 ),
                 // ElevatedButton(
                 //     style: ButtonStyle(

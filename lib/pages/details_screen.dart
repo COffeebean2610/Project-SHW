@@ -106,7 +106,7 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        top: 530 * MediaQuery.of(context).size.aspectRatio,
+                        top: 600 * MediaQuery.of(context).size.aspectRatio,
                         left: 300 * MediaQuery.of(context).size.aspectRatio,
                         right: 12 * MediaQuery.of(context).size.aspectRatio,
                         bottom: 10 * MediaQuery.of(context).size.aspectRatio),

@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 50), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const Home()),
       );
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen>
             children: [
 
               Container(
-                padding: EdgeInsets.only(top:50),
+                padding: const EdgeInsets.only(top:50),
                 child:  Image.asset(
                   "assets/images/logo.png",
 ),
