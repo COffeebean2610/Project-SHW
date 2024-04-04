@@ -1,10 +1,12 @@
+import 'dart:async';
 import 'dart:io';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:project_shw/pages/petrol_pumps.dart';
+
 import 'auth/auth_screen.dart';
 import 'loading_screen/splash_screen.dart';
 import 'pages/home.dart';
@@ -24,79 +26,81 @@ void main() async {
         ))
       : await Firebase.initializeApp();
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
-
-  const InitializationSettings initializationSettings =
-      InitializationSettings(android: initializationSettingsAndroid);
-
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onDidReceiveBackgroundNotificationResponse:
-          onDidReceiveBackgroundNotificationResponse);
-
-  tz.initializeTimeZones();
-  runApp(const MyApp());
-}
-
-Future<void> onDidReceiveBackgroundNotificationResponse(
-    NotificationResponse notificationResponse) async {
-  final String? payload = notificationResponse.payload;
-  if (payload != null) {
-    debugPrint('notification payload: $payload');
-  }
-}
-
-void scheduleNotifications() async {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  // Clear all scheduled notifications
-  await flutterLocalNotificationsPlugin.cancelAll();
-
-  // Define the notification details
-  const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails(
-    'your_channel_id', // Change this to your channel id
-    'Your Channel Name', // Change this to your channel name
-    // Change this to your channel description
-    importance: Importance.max,
-    priority: Priority.high,
-    enableVibration: true,
-  );
-  const NotificationDetails platformChannelSpecifics =
-      NotificationDetails(android: androidPlatformChannelSpecifics);
-
-  // Schedule notifications at intervals
-  for (int i = 0; i < 5; i++) {
-    // Calculate the time for the notification
-    var scheduledTime = tz.TZDateTime.now(tz.local)
-        .add(Duration(minutes: i * 15)); // Change interval here
-
-    // Schedule the notification
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      i,
-      'Scheduled Notification',
-      'Notification ${i + 1} after ${i * 15} minutes', // Change notification message here
-      scheduledTime,
-      platformChannelSpecifics,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time,
-    );
-  }
-}
-
-Future<void> onDidReceiveNotificationResponse(
-    int id, String? title, String? body, String? payload) async {
-  // Handle the notification response
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+  Future<void> _initializeNotifications(BuildContext context) async {
+    var initializationSettingsAndroid =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettings =
+    InitializationSettings(android: initializationSettingsAndroid);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) {
+          // Handle notification tap here
+          _gotopets(context);
+        }
+    );
+    _setupNotificationHandling(context);
+    _scheduleNotifications();
+  }
 
+  Future<void> _setupNotificationHandling(BuildContext context) async {
+    var initializationSettingsAndroid =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) {
+        // Handle notification tap here
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const PetrolPumps()),
+        );
+      }
+    );
+  }
+    void _gotopets(BuildContext context) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const PetrolPumps()),
+      );
+    }
+  Future<void> _showNotification() async {
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'your_channel_id',
+      'your_channel_name',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+    var platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+    );
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Notification Title',
+      'Notification Body',
+      platformChannelSpecifics,
+      payload: 'New Payload',
+    );
+  }
+
+  void _scheduleNotifications() {
+    // Schedule notifications as needed
+    // For example, you can use Timer or any other mechanism
+    // to schedule notifications periodically or at specific times.
+    // For demonstration, let's schedule a notification every minute.
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      _showNotification();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -105,14 +109,8 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, usersnapshot) {
               if (usersnapshot.hasData) {
-                //return const Home();
-                return Container(
-                  child: ElevatedButton(
-                    onPressed:scheduleNotifications,
-                    child: const Text('Schedule Notifications'),
-
-                  ),
-                );
+                return const Home();
+                // return PushNotificationScreen();
               } else {
                 Fluttertoast.showToast(
                     msg: "Please Login",

@@ -1,11 +1,13 @@
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:project_shw/pages/locations_for_google_maps.dart";
+import "package:project_shw/pages/petrol_pumps.dart";
 
 import "../search_screen/search_screen.dart";
 
 class AppDrawerForAll extends StatelessWidget {
   final String title;
+
   const AppDrawerForAll({super.key, required this.title});
 
   @override
@@ -29,22 +31,7 @@ class AppDrawerForAll extends StatelessWidget {
             fontSize: 44 * MediaQuery.of(context).size.aspectRatio),
       ),
       actions: <Widget>[
-        // title != "Samruddhi Roadlines"
-        //     ? IconButton(onPressed: () {}, icon: Icon(Icons.add_circle))
-        //     : IconButton(
-        //         icon: const Icon(
-        //           Icons.refresh,
-        //           size: 30,
-        //         ),
-        //         onPressed: () {
-        //           Navigator.push(
-        //             context,
-        //             MaterialPageRoute(
-        //               builder: (context) => const Home(),
-        //             ),
-        //           );
-        //         },
-        //       ),
+
         IconButton(
           icon: const Icon(Icons.search, size: 30, color: Colors.black),
           onPressed: () {
@@ -61,7 +48,7 @@ class AppDrawerForAll extends StatelessWidget {
             handleClick(choice, context);
           },
           itemBuilder: (BuildContext context) {
-            return {'Logout', 'See All Routes'}.map((String choice) {
+            return {'Logout', 'See All Routes','view stops'}.map((String choice) {
               return PopupMenuItem<String>(
                 value: choice,
                 child: Text(
@@ -94,8 +81,11 @@ class AppDrawerForAll extends StatelessWidget {
       case 'Logout':
         logout();
         break;
-      case 'see all routes':
+      case 'See All Routes':
         locations(context);
+        break;
+      case 'view stops':
+         stops(context);
         break;
     }
   }
@@ -112,4 +102,29 @@ class AppDrawerForAll extends StatelessWidget {
       ),
     );
   }
+  void stops(BuildContext context) {
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PetrolPumps(),
+      ),
+    );
+  }
 }
+// title != "Samruddhi Roadlines"
+//     ? IconButton(onPressed: () {}, icon: Icon(Icons.add_circle))
+//     : IconButton(
+//         icon: const Icon(
+//           Icons.refresh,
+//           size: 30,
+//         ),
+//         onPressed: () {
+//           Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) => const Home(),
+//             ),
+//           );
+//         },
+//       ),
