@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
     // For example, you can use Timer or any other mechanism
     // to schedule notifications periodically or at specific times.
     // For demonstration, let's schedule a notification every minute.
-    Timer.periodic(Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 5), (timer) {
       _showNotification();
     });
   }

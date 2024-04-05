@@ -25,7 +25,7 @@ class _PetrolPumpsState extends State<PetrolPumps> {
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
     _setupNotificationHandling();
     _scheduleNotifications();
-    _stopNotificationsAfterDelay(Duration(seconds: 10)); // Change the duration as needed
+    _stopNotificationsAfterDelay(Duration(seconds: 5)); // Change the duration as needed
   }
 
   Future<void> _setupNotificationHandling() async {
