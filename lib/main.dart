@@ -1,12 +1,7 @@
-import 'dart:async';
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:project_shw/pages/petrol_pumps.dart';
-
 import 'auth/auth_screen.dart';
 import 'loading_screen/splash_screen.dart';
 import 'pages/home.dart';
@@ -26,81 +21,11 @@ void main() async {
         ))
       : await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
-  Future<void> _initializeNotifications(BuildContext context) async {
-    var initializationSettingsAndroid =
-    const AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializationSettings =
-    InitializationSettings(android: initializationSettingsAndroid);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) {
-          // Handle notification tap here
-          _gotopets(context);
-        }
-    );
-    _setupNotificationHandling(context);
-    _scheduleNotifications();
-  }
-
-  Future<void> _setupNotificationHandling(BuildContext context) async {
-    var initializationSettingsAndroid =
-   const AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-    );
-    await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) {
-        // Handle notification tap here
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const PetrolPumps()),
-        );
-      }
-    );
-  }
-    void _gotopets(BuildContext context) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const PetrolPumps()),
-      );
-    }
-  Future<void> _showNotification() async {
-    var androidPlatformChannelSpecifics =const AndroidNotificationDetails(
-      'your_channel_id',
-      'your_channel_name',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
-    var platformChannelSpecifics = NotificationDetails(
-      android: androidPlatformChannelSpecifics,
-    );
-
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      'Notification Title',
-      'Notification Body',
-      platformChannelSpecifics,
-      payload: 'New Payload',
-    );
-  }
-
-  void _scheduleNotifications() {
-    // Schedule notifications as needed
-    // For example, you can use Timer or any other mechanism
-    // to schedule notifications periodically or at specific times.
-    // For demonstration, let's schedule a notification every minute.
-    Timer.periodic(const Duration(seconds: 5), (timer) {
-      _showNotification();
-    });
-  }
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -120,7 +45,7 @@ class MyApp extends StatelessWidget {
                     backgroundColor: Colors.amber,
                     textColor: Colors.white,
                     fontSize: 16.0);
-                return const Home();
+                return const AuthScreen();
               }
             }));
   }

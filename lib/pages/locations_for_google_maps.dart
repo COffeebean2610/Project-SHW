@@ -56,10 +56,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(17 * MediaQuery.of(context).devicePixelRatio),
-        child: const AppDrawerForAll(title: 'Samruddhi-Mahamarg'),
-      ),
+
       body: Column(
         children: <Widget>[
           Padding(
