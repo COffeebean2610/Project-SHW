@@ -120,7 +120,7 @@ class MyApp extends StatelessWidget {
                     backgroundColor: Colors.amber,
                     textColor: Colors.white,
                     fontSize: 16.0);
-                return const AuthScreen();
+                return const Home();
               }
             }));
   }
