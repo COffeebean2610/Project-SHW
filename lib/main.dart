@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   FlutterLocalNotificationsPlugin();
   Future<void> _initializeNotifications(BuildContext context) async {
     var initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+    const AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettings =
     InitializationSettings(android: initializationSettingsAndroid);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
 
   Future<void> _setupNotificationHandling(BuildContext context) async {
     var initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+   const AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
     );
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
       );
     }
   Future<void> _showNotification() async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+    var androidPlatformChannelSpecifics =const AndroidNotificationDetails(
       'your_channel_id',
       'your_channel_name',
       importance: Importance.max,
