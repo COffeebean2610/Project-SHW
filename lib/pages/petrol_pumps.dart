@@ -20,7 +20,7 @@ class _PetrolPumpsState extends State<PetrolPumps> {
   Future<Position> _getCurrentLocation() async {
     servicePermission = await Geolocator.isLocationServiceEnabled();
     if (!servicePermission) {
-      print("location service not enabled");
+
 
     }
     permission = await Geolocator.requestPermission();
@@ -74,7 +74,7 @@ class _PetrolPumpsState extends State<PetrolPumps> {
                 lat = _currentPosition!.latitude.toString();
                 long = _currentPosition!.longitude.toString();
               });
-              print("$_currentPosition this is the address");
+
             }, child: const Text("Get Location"))
           ],
         ),
