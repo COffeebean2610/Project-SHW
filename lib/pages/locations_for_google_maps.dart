@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
-import '../appbar/app_bar.dart';
+
 
 class LocationsForGoogleMaps extends StatefulWidget {
   const LocationsForGoogleMaps({Key? key}) : super(key: key);
@@ -17,8 +17,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   bool isLoading = true;
   final Map<String, Color> colorMap = {
     'Colors.white': Colors.white,
-    'Colors.white': Colors.white,
-    'Colors.white': Colors.white,
+
 
     // Add more colors as needed
   };
@@ -74,7 +73,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
           ),
           Expanded(
             child: isLoading
-                ? const Center(child: CircularProgressIndicator()) // Loading indicator
+                ? const Center(child: CircularProgressIndicator(color: Colors.amber,)) // Loading indicator
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: GridView.builder(
