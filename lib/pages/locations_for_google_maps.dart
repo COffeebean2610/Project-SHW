@@ -6,7 +6,7 @@ import 'package:project_shw/pages/item_card.dart';
 
 
 class LocationsForGoogleMaps extends StatefulWidget {
-  const LocationsForGoogleMaps({Key? key}) : super(key: key);
+  const LocationsForGoogleMaps({super.key});
 
   @override
   State<LocationsForGoogleMaps> createState() => _LocationsForGoogleMapsState();
