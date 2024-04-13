@@ -1,11 +1,12 @@
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:project_shw/pages/locations_for_google_maps.dart";
+import "package:project_shw/pages/petrol_pumps.dart";
 
-import "../search_screen/search_screen.dart";
 
 class AppDrawerForAll extends StatelessWidget {
   final String title;
+
   const AppDrawerForAll({super.key, required this.title});
 
   @override
@@ -28,78 +29,59 @@ class AppDrawerForAll extends StatelessWidget {
             fontStyle: FontStyle.italic,
             fontSize: 44 * MediaQuery.of(context).size.aspectRatio),
       ),
-      actions: <Widget>[
-        // title != "Samruddhi Roadlines"
-        //     ? IconButton(onPressed: () {}, icon: Icon(Icons.add_circle))
-        //     : IconButton(
-        //         icon: const Icon(
-        //           Icons.refresh,
-        //           size: 30,
-        //         ),
-        //         onPressed: () {
-        //           Navigator.push(
-        //             context,
-        //             MaterialPageRoute(
-        //               builder: (context) => const Home(),
-        //             ),
-        //           );
-        //         },
-        //       ),
-        IconButton(
-          icon: const Icon(Icons.search, size: 30, color: Colors.black),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SearchScreen(),
-              ),
-            );
-          },
-        ),
-        PopupMenuButton<String>(
-          onSelected: (String choice) {
-            handleClick(choice, context);
-          },
-          itemBuilder: (BuildContext context) {
-            return {'Logout', 'see all routes'}.map((String choice) {
-              return PopupMenuItem<String>(
-                value: choice,
-                child: Text(choice),
-              );
-            }).toList();
-          },
-        ),
-        // IconButton(
-        //   icon: const Icon(Icons.logout,color: Colors.black,),
-        //   onPressed: () async {
-        //     await FirebaseAuth.instance.signOut();
-        //   },
-        // ),
-      ],
-
 
     );
   }
-  void handleClick(String value,BuildContext context) {
+
+  void handleClick(String value, BuildContext context) {
     switch (value) {
       case 'Logout':
         logout();
         break;
-      case 'see all routes':
+      case 'See All Routes':
         locations(context);
         break;
+      case 'view stops':
+         stops(context);
+        break;
     }
-
   }
-  void logout () async{
+
+  void logout() async {
     await FirebaseAuth.instance.signOut();
   }
 
-  void locations (BuildContext context){
+  void locations(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const LocationsForGoogleMaps(),
       ),
-    );}
+    );
+  }
+  void stops(BuildContext context) {
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PetrolPumps(),
+      ),
+    );
+  }
 }
+// title != "Samruddhi Roadlines"
+//     ? IconButton(onPressed: () {}, icon: Icon(Icons.add_circle))
+//     : IconButton(
+//         icon: const Icon(
+//           Icons.refresh,
+//           size: 30,
+//         ),
+//         onPressed: () {
+//           Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) => const Home(),
+//             ),
+//           );
+//         },
+//       ),

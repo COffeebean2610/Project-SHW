@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-//import 'package:project_shw/pages/locations_for_google_maps.dart';
+
 import 'package:project_shw/search_screen/search_function.dart';
 import '../models/map_locations.dart'; // Make sure to import your map_locations.dart file
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   @override
   SearchScreenState createState() => SearchScreenState();
@@ -63,7 +63,7 @@ class SearchScreenState extends State<SearchScreen> {
             gradient: LinearGradient(colors: [Colors.grey.shade900,Colors.grey.shade900],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              stops: [0.1,0.9],
+              stops: const [0.1,0.9],
 
 
             )
@@ -137,7 +137,7 @@ class SearchScreenState extends State<SearchScreen> {
                     items: listItems
                         .map((item) => DropdownMenuItem(
                               value: item,
-                              child: Text(item,style: TextStyle(color: Colors.white),),
+                              child: Text(item,style: const TextStyle(color: Colors.white),),
                             ))
                         .toList(),
                     onChanged: (value) {
@@ -185,7 +185,7 @@ class SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 300 * MediaQuery.of(context).size.height / 800,
+                  height: 680 * MediaQuery.of(context).size.aspectRatio,
                 ),
                 // ElevatedButton(
                 //     style: ButtonStyle(
@@ -202,7 +202,12 @@ class SearchScreenState extends State<SearchScreen> {
                 //       );
                 //     },
                 //     child: const Text('See All Routes')),
-              ],
+          Image.asset(
+            "assets/images/logo.png",
+
+
+          ),
+          ]
             ),
           ),
         ),

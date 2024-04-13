@@ -2,7 +2,6 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-
     id 'com.google.gms.google-services'
 }
 
@@ -25,6 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
+
     namespace "com.dhunters.project_shw"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -59,7 +59,9 @@ flutter {
     source '../..'
 }
 dependencies {
-    implementation platform('com.google.firebase:firebase-bom:32.7.3')
+    implementation platform('com.google.firebase:firebase-bom:32.8.0')
     implementation 'com.google.firebase:firebase-analytics'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }
 apply  plugin: 'com.google.gms.google-services'
+
