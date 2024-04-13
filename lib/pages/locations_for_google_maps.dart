@@ -4,7 +4,6 @@ import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
 
-
 class LocationsForGoogleMaps extends StatefulWidget {
   const LocationsForGoogleMaps({super.key});
 
@@ -18,7 +17,6 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   final Map<String, Color> colorMap = {
     'Colors.white': Colors.white,
 
-
     // Add more colors as needed
   };
 
@@ -31,17 +29,17 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   Future<void> _fetchProducts() async {
     try {
       QuerySnapshot<Map<String, dynamic>> productsSnapshot =
-      await FirebaseFirestore.instance.collection('mapLinks').get();
+          await FirebaseFirestore.instance.collection('mapLinks').get();
 
       setState(() {
         products = productsSnapshot.docs
             .map((doc) => MapLoc(
-          id: doc.id,
-          title: doc['title'] ?? "blank value",
-          linktolocation: doc['link'] ?? "blank Value",
-          description: doc['description'] ?? "blank Value",
-          color: colorMap[doc['color']] ?? Colors.grey.shade100,
-        ))
+                  id: doc.id,
+                  title: doc['title'] ?? "blank value",
+                  linktolocation: doc['link'] ?? "blank Value",
+                  description: doc['description'] ?? "blank Value",
+                  color: colorMap[doc['color']] ?? Colors.grey.shade100,
+                ))
             .toList();
         isLoading = false;
       });
@@ -55,11 +53,11 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 17.0, vertical: 17.0),
             child: Text(
               "Routes For Samruddhi-Mahamarg",
               style: TextStyle(
@@ -73,38 +71,41 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
           ),
           Expanded(
             child: isLoading
-                ? const Center(child: CircularProgressIndicator(color: Colors.amber,)) // Loading indicator
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.amber,
+                  ))
                 : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: GridView.builder(
-                itemCount: products.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 23,
-                  crossAxisSpacing: 23,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) => ItemCard(
-                  product: products[index],
-                  press: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailsScreen(
-                          product: products[index],
-                          link: products[index].linktolocation,
-                        ),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: GridView.builder(
+                      itemCount: products.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 23,
+                        crossAxisSpacing: 23,
+                        childAspectRatio: 0.75,
                       ),
-                    );
-                  },
-                ),
-              ),
-            ),
+                      itemBuilder: (context, index) => ItemCard(
+                        product: products[index],
+                        press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsScreen(
+                                product: products[index],
+                                link: products[index].linktolocation,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),
       backgroundColor: Colors.grey.shade900,
     );
-
   }
 }

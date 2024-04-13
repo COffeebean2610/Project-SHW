@@ -8,7 +8,6 @@ import 'pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const SplashScreen());
   Platform.isAndroid
@@ -20,7 +19,6 @@ void main() async {
           projectId: "samruddhi-roadlines",
         ))
       : await Firebase.initializeApp();
-
   runApp(const MyApp());
 }
 
@@ -50,13 +48,3 @@ class MyApp extends StatelessWidget {
             }));
   }
 }
-// // final mapLocs = await MapLinksModel('mapLinks').fetchMapLinks();
-// //final products = mapLocs.map((mapLoc) {
-//   return MapLoc(
-//     id: mapLoc.id,
-//     title: mapLoc.title,
-//     description: mapLoc.description,
-//     linktolocation: mapLoc.linktolocation,
-//     color: mapLoc.color,
-//   );
-// }).toList();
