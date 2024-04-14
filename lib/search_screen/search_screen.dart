@@ -22,7 +22,7 @@ class SearchScreenState extends State<SearchScreen> {
     "Arvi-Pulgaon",
     "Aurangabad",
     "Bhiwandi",
-    "DhamanGaon Railway Station",
+    "Dhamangaon Railway Station",
     "Dusarbid",
     "Igatpuri",
     "Jalna",
