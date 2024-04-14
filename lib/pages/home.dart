@@ -68,8 +68,8 @@ class HomeState extends State<Home> {
             backgroundColor: Colors.amberAccent,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.not_interested),
-            label: 'Stops',
+            icon: Icon(Icons.question_mark_sharp),
+            label: 'Tutorials',
             backgroundColor: Colors.redAccent,
           ),
           BottomNavigationBarItem(

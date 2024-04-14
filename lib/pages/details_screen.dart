@@ -86,59 +86,30 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                      margin: const EdgeInsets.only(
-                          top:230 , bottom: 90, left: 90, right: 12),
-                      padding: const EdgeInsets.only(
-                        top: 50,
-                        bottom: 50,
-                        left: 23,
-                        right: 23,
-                      ),
-                      child: Text(
-                    "How to Skip a Stop?",
-                    style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: 18 * MediaQuery.of(context).size.width / 360,
-                        fontWeight: FontWeight.bold),
-                  )),
-                  Container(
-                    margin: const EdgeInsets.only(
-                        top: 250, bottom: 90, left: 70, right: 12),
-                    padding: const EdgeInsets.only(
-                      top: 50,
-                      bottom: 50,
-                      left: 23,
-                      right: 23,
-                    ),
-                    child: Image.asset(
-                      "assets/images/tutorial.gif",
-                      height: 900 * MediaQuery.of(context).size.aspectRatio,
-                      width: 400 * MediaQuery.of(context).size.aspectRatio,
 
-                    ),
-                  ),
                   Container(
                     margin: EdgeInsets.only(
-                        top: 1400 * MediaQuery.of(context).size.aspectRatio,
-                        left: 300 * MediaQuery.of(context).size.aspectRatio,
+                        top: 80 * MediaQuery.of(context).size.aspectRatio,
+                        left: 30 * MediaQuery.of(context).size.aspectRatio,
                         right: 12 * MediaQuery.of(context).size.aspectRatio,
                         bottom: 10 * MediaQuery.of(context).size.aspectRatio),
                     padding: const EdgeInsets.all(6),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        //open googlemaps
-                        launchboth();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.amber,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(80)),
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //open googlemaps
+                          launchboth();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(80)),
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "Go To Map",
-                        style: TextStyle(color: Colors.black),
+                        child: const Text(
+                          "Go To Map",
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
                   ),

@@ -24,13 +24,15 @@ class _NextScreenState extends State<NextScreen> {
   void initState() {
     super.initState();
     if (widget.filteredRoute.length == 2) {
+
       final String title = '${widget.filteredRoute[0]} to ${widget.filteredRoute[1]}';
+      print(title);
       _fetchProducts(title);
     }
   }
 
   Future<void> _fetchProducts(String title) async {
-    String uri = "https://mangalgrahsevasanstha.org.in/test/project_shw/view_data.php";
+    String uri = "https://mangalgrahsevasanstha.org.in/test/project_shw/view_data.php?title=$title";
 
     setState(() {
       isLoading = true;
@@ -38,15 +40,18 @@ class _NextScreenState extends State<NextScreen> {
 
     try {
       Response response = await get(Uri.parse(uri));
-      List<dynamic> data = json.decode(response.body) as List<dynamic>;
 
-      setState(() {
-        // Clear existing products
-        products.clear();
+      if (response.statusCode == 200) {
+        // HTTP OK
+        print(response.statusCode);
+        List<dynamic> data = json.decode(response.body) as List<dynamic>;
 
-        // Filter and map data to products list
-        products = data.map((item) {
-          if (item['title'] == title) {
+        setState(() {
+          // Clear existing products
+          products.clear();
+
+          // Map data to products list
+          products = data.map((item) {
             return MapLoc(
               id: item['id'],
               title: item['title'],
@@ -54,20 +59,26 @@ class _NextScreenState extends State<NextScreen> {
               description: item['info'],
               // Assuming a default color for now
             );
-          } else {
-            return null;
-          }
-        }).where((element) => element != null).toList();
-
-        isLoading = false;
-      });
+          }).toList();
+          print(products);
+          isLoading = false;
+        });
+      } else {
+        // HTTP error
+        print("HTTP Error: ${response.statusCode}");
+        setState(() {
+          isLoading = false;
+        });
+      }
     } catch (error) {
+      // Network or other error
+      print("Error fetching products: $error");
       setState(() {
         isLoading = false;
       });
-      print("Error fetching products: $error");
     }
   }
+
 
 
   @override
@@ -94,7 +105,7 @@ class _NextScreenState extends State<NextScreen> {
           ),
           Expanded(
             child: isLoading
-                ? const Center(child: CircularProgressIndicator()) // Loading indicator
+                ? const Center(child: CircularProgressIndicator(color: Colors.amber,)) // Loading indicator
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: GestureDetector(
