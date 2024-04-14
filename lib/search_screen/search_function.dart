@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' ;
 import '../appbar/app_bar.dart';
 import '../models/map_locations.dart';
 import '../pages/details_screen.dart';
@@ -35,37 +37,45 @@ class _NextScreenState extends State<NextScreen> {
   }
 
   Future<void> _fetchProducts(String title) async {
+    String uri = "https://mangalgrahsevasanstha.org.in/test/project_shw/view_data.php";
+
     setState(() {
       isLoading = true;
     });
+
     try {
-      QuerySnapshot<Map<String, dynamic>> productsSnapshot =
-      await FirebaseFirestore.instance.collection('mapLinks').get();
+      Response response = await get(Uri.parse(uri));
+      List<dynamic> data = json.decode(response.body) as List<dynamic>;
 
       setState(() {
-        products = productsSnapshot.docs.map((doc) {
-          if (title == doc['title']) {
+        // Clear existing products
+        products.clear();
+
+        // Filter and map data to products list
+        products = data.map((item) {
+          if (item['title'] == title) {
             return MapLoc(
-              id: doc.id,
-              title: doc['title'],
-              linktolocation: doc['link'],
-              description: doc['description'],
-              color: colorMap[doc['color']] ?? Colors.orange,
+              id: item['id'],
+              title: item['title'],
+              linktolocation: item['link'],
+              description: item['info'],
+              color: Colors.orange, // Assuming a default color for now
             );
           } else {
             return null;
           }
-        }).where((element) => element != null).toList(); // Filter out null values
+        }).where((element) => element != null).toList();
+
         isLoading = false;
       });
     } catch (error) {
       setState(() {
         isLoading = false;
       });
-      // Handle error gracefully
       print("Error fetching products: $error");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
