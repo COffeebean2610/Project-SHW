@@ -187,21 +187,7 @@ class SearchScreenState extends State<SearchScreen> {
                 SizedBox(
                   height: 680 * MediaQuery.of(context).size.aspectRatio,
                 ),
-                // ElevatedButton(
-                //     style: ButtonStyle(
-                //       backgroundColor:
-                //           MaterialStateProperty.all(Colors.blue.shade600),
-                //       foregroundColor: MaterialStateProperty.all(Colors.white),
-                //     ),
-                //     onPressed: () {
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //           builder: (context) => const LocationsForGoogleMaps(),
-                //         ),
-                //       );
-                //     },
-                //     child: const Text('See All Routes')),
+               
           Image.asset(
             "assets/images/logo.png",
 

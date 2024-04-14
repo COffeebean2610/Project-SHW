@@ -16,11 +16,7 @@ class LocationsForGoogleMaps extends StatefulWidget {
 class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   List<MapLoc?> products = [];
   bool isLoading = true;
-  final Map<String, Color> colorMap = {
-    'Colors.white': Colors.white,
 
-    // Add more colors as needed
-  };
 
   @override
   void initState() {
@@ -51,7 +47,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
               title: item['title'],
               linktolocation: item['link'],
               description: item['info'],
-              color: Colors.orange, // Assuming a default color for now
+               // Assuming a default color for now
             );
           } else {
             return null;

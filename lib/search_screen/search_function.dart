@@ -20,13 +20,6 @@ class _NextScreenState extends State<NextScreen> {
   List<MapLoc?> products = [];
   bool isLoading = true;
 
-  final Map<String, Color> colorMap = {
-    'Colors.red': Colors.red,
-    'Colors.blue': Colors.blue,
-    'Colors.green': Colors.green,
-    // Add more colors as needed
-  };
-
   @override
   void initState() {
     super.initState();
@@ -59,7 +52,7 @@ class _NextScreenState extends State<NextScreen> {
               title: item['title'],
               linktolocation: item['link'],
               description: item['info'],
-              color: Colors.orange, // Assuming a default color for now
+              // Assuming a default color for now
             );
           } else {
             return null;
