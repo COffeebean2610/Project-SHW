@@ -19,7 +19,7 @@ class SearchScreenState extends State<SearchScreen> {
   late List<MapLoc> products;
   List listItems = [
 
-    "Ari-Pulgaon",
+    "Arvi-Pulgaon",
     "Aurangabad",
     "Bhiwandi",
     "DhamanGaon Railway Station",
@@ -31,7 +31,7 @@ class SearchScreenState extends State<SearchScreen> {
     "Lasur",
     "Malegaon-Jahangir",
     "Mehkar",
-    "MIDC Buti Bori",
+    "MIDC Buti Buri",
     "Nagpur",
     "Nashik Connector",
     "Seloo Bazar",
