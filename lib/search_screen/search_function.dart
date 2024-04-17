@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' ;
 import '../appbar/app_bar.dart';
 import '../models/map_locations.dart';
 import '../pages/details_screen.dart';
@@ -18,54 +20,66 @@ class _NextScreenState extends State<NextScreen> {
   List<MapLoc?> products = [];
   bool isLoading = true;
 
-  final Map<String, Color> colorMap = {
-    'Colors.red': Colors.red,
-    'Colors.blue': Colors.blue,
-    'Colors.green': Colors.green,
-    // Add more colors as needed
-  };
-
   @override
   void initState() {
     super.initState();
     if (widget.filteredRoute.length == 2) {
+
       final String title = '${widget.filteredRoute[0]} to ${widget.filteredRoute[1]}';
+      print(title);
       _fetchProducts(title);
     }
   }
 
   Future<void> _fetchProducts(String title) async {
+    String uri = "https://mangalgrahsevasanstha.org.in/test/project_shw/view_data.php?title=$title";
+
     setState(() {
       isLoading = true;
     });
-    try {
-      QuerySnapshot<Map<String, dynamic>> productsSnapshot =
-      await FirebaseFirestore.instance.collection('mapLinks').get();
 
-      setState(() {
-        products = productsSnapshot.docs.map((doc) {
-          if (title == doc['title']) {
+    try {
+      Response response = await get(Uri.parse(uri));
+
+      if (response.statusCode == 200) {
+        // HTTP OK
+        print(response.statusCode);
+        List<dynamic> data = json.decode(response.body) as List<dynamic>;
+
+        setState(() {
+          // Clear existing products
+          products.clear();
+
+          // Map data to products list
+          products = data.map((item) {
             return MapLoc(
-              id: doc.id,
-              title: doc['title'],
-              linktolocation: doc['link'],
-              description: doc['description'],
-              color: colorMap[doc['color']] ?? Colors.orange,
+              id: item['id'],
+              title: item['title'],
+              linktolocation: item['link'],
+              description: item['info'],
+              // Assuming a default color for now
             );
-          } else {
-            return null;
-          }
-        }).where((element) => element != null).toList(); // Filter out null values
-        isLoading = false;
-      });
+          }).toList();
+          print(products);
+          isLoading = false;
+        });
+      } else {
+        // HTTP error
+        print("HTTP Error: ${response.statusCode}");
+        setState(() {
+          isLoading = false;
+        });
+      }
     } catch (error) {
+      // Network or other error
+      print("Error fetching products: $error");
       setState(() {
         isLoading = false;
       });
-      // Handle error gracefully
-      print("Error fetching products: $error");
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +105,7 @@ class _NextScreenState extends State<NextScreen> {
           ),
           Expanded(
             child: isLoading
-                ? const Center(child: CircularProgressIndicator()) // Loading indicator
+                ? const Center(child: CircularProgressIndicator(color: Colors.amber,)) // Loading indicator
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: GestureDetector(

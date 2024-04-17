@@ -19,28 +19,21 @@ class SearchScreenState extends State<SearchScreen> {
   late List<MapLoc> products;
   List listItems = [
 
-    "Ari-Pulgaon",
+    "Arvi-Pulgaon",
     "Aurangabad",
-    "Bhiwandi",
-    "DhamanGaon Railway Station",
+    "Dhamangaon Railway Station",
     "Dusarbid",
-    "Igatpuri",
     "Jalna",
-    "Karanja lad",
-    "Khrud",
+    "Karanja Lad",
     "Lasur",
     "Malegaon-Jahangir",
     "Mehkar",
-    "MIDC Buti Bori",
+    "MIDC Buti Buri",
     "Nagpur",
-    "Nashik Connector",
-    "Seloo Bazar",
-    "Sindhkhed Raja",
+    "Seloo Bajar",
+    "Sindkhed Raja",
     "Sindhi Dry Port",
-    "Shahpur",
-    "Shendra MIDC",
     "Shirdi",
-    "Sinnar",
     "Verul",
     "Vaijapur",
     "Wardha",
@@ -187,21 +180,7 @@ class SearchScreenState extends State<SearchScreen> {
                 SizedBox(
                   height: 680 * MediaQuery.of(context).size.aspectRatio,
                 ),
-                // ElevatedButton(
-                //     style: ButtonStyle(
-                //       backgroundColor:
-                //           MaterialStateProperty.all(Colors.blue.shade600),
-                //       foregroundColor: MaterialStateProperty.all(Colors.white),
-                //     ),
-                //     onPressed: () {
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //           builder: (context) => const LocationsForGoogleMaps(),
-                //         ),
-                //       );
-                //     },
-                //     child: const Text('See All Routes')),
+               
           Image.asset(
             "assets/images/logo.png",
 

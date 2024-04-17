@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart';
 import 'package:project_shw/models/map_locations.dart';
 import 'package:project_shw/pages/details_screen.dart';
 import 'package:project_shw/pages/item_card.dart';
@@ -12,13 +14,9 @@ class LocationsForGoogleMaps extends StatefulWidget {
 }
 
 class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
-  List<MapLoc> products = [];
+  List<MapLoc?> products = [];
   bool isLoading = true;
-  final Map<String, Color> colorMap = {
-    'Colors.white': Colors.white,
 
-    // Add more colors as needed
-  };
 
   @override
   void initState() {
@@ -27,28 +25,45 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   }
 
   Future<void> _fetchProducts() async {
+    String uri = "https://mangalgrahsevasanstha.org.in/test/project_shw/view_data.php";
+
+    setState(() {
+      isLoading = true;
+    });
+
     try {
-      QuerySnapshot<Map<String, dynamic>> productsSnapshot =
-          await FirebaseFirestore.instance.collection('mapLinks').get();
+      Response response = await get(Uri.parse(uri));
+      List<dynamic> data = json.decode(response.body) as List<dynamic>;
 
       setState(() {
-        products = productsSnapshot.docs
-            .map((doc) => MapLoc(
-                  id: doc.id,
-                  title: doc['title'] ?? "blank value",
-                  linktolocation: doc['link'] ?? "blank Value",
-                  description: doc['description'] ?? "blank Value",
-                  color: colorMap[doc['color']] ?? Colors.grey.shade100,
-                ))
-            .toList();
+        // Clear existing products
+        products.clear();
+
+        // Filter and map data to products list
+        products = data.map((item) {
+          if (item['title'] != null) {
+            return MapLoc(
+              id: item['id'],
+              title: item['title'],
+              linktolocation: item['link'],
+              description: item['info'],
+               // Assuming a default color for now
+            );
+          } else {
+            return null;
+          }
+        }).where((element) => element != null).toList();
+
         isLoading = false;
       });
     } catch (error) {
-      // Handle error
-      //print("Error fetching products: $error");
-      // Some changes are made here
+      setState(() {
+        isLoading = false;
+      });
+      print("Error fetching products: $error");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,20 +101,28 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                         crossAxisSpacing: 23,
                         childAspectRatio: 0.75,
                       ),
-                      itemBuilder: (context, index) => ItemCard(
-                        product: products[index],
-                        press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailsScreen(
-                                product: products[index],
-                                link: products[index].linktolocation,
-                              ),
-                            ),
+                      itemBuilder: (context, index) {
+                        final product = products[index];
+                        if (product != null) {
+                          return ItemCard(
+                            product: product,
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailsScreen(
+                                    product: product,
+                                    link: product.linktolocation,
+                                  ),
+                                ),
+                              );
+                            },
                           );
-                        },
-                      ),
+                        } else {
+                          return Container(); // or any other placeholder widget
+                        }
+                      },
+
                     ),
                   ),
           ),
