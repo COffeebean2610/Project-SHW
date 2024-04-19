@@ -47,6 +47,7 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
               title: item['title'],
               linktolocation: item['link'],
               description: item['info'],
+
                // Assuming a default color for now
             );
           } else {
