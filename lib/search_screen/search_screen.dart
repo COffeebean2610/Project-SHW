@@ -85,12 +85,20 @@ class SearchScreenState extends State<SearchScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButton(
                     style: const TextStyle(fontSize: 20, color: Colors.white),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.amber,
+                    ),
                     dropdownColor: Colors.amber,
                     icon: const Icon(
                       Icons.arrow_drop_down_circle_rounded,
                       color: Colors.amber,
                     ),
                     iconSize: 23,
+                    alignment: Alignment.center,
+                    menuMaxHeight: MediaQuery.of(context).size.height * 0.5-MediaQuery.of(context).padding.bottom,
+                    isDense: true,
+
                     isExpanded: true,
                     hint: const Text(
                       "Select From",
@@ -100,6 +108,7 @@ class SearchScreenState extends State<SearchScreen> {
                     items: listItems
                         .map((item) => DropdownMenuItem(
                               value: item,
+                      alignment: Alignment.center,
                               child: Text(item),
                             ))
                         .toList(),
@@ -114,31 +123,47 @@ class SearchScreenState extends State<SearchScreen> {
                 Padding(
 
                   padding: const EdgeInsets.all(8.0),
-                  child: DropdownButton(
+                  child:
 
-                    style: const TextStyle(fontSize: 20, color: Colors.black),
-                    dropdownColor: Colors.amber,
-                    icon: const Icon(Icons.arrow_drop_down_circle_rounded,
-                        color: Colors.amber),
-                    iconSize: 23,
-                    isExpanded: true,
-                    hint: const Text(
-                      "Select End Point",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    value: _toLocation.isNotEmpty ? _toLocation : null,
-                    items: listItems
-                        .map((item) => DropdownMenuItem(
-                              value: item,
-                              child: Text(item,style: const TextStyle(color: Colors.white),),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _toLocation = value.toString();
-                      });
-                    },
-                  ),
+
+                      DropdownButton(
+                        //the dropdown menu should appear under the textfield
+                        underline: Container(
+                          height: 2,
+                          color: Colors.amber,
+                        ),
+
+                        style: const TextStyle(fontSize: 20, color: Colors.black),
+                        dropdownColor: Colors.amber,
+                        icon: const Icon(Icons.arrow_drop_down_circle_rounded,
+                            color: Colors.amber),
+                        iconSize: 23,
+                        alignment: Alignment.center,
+                        menuMaxHeight: MediaQuery.of(context).size.height * 0.5-MediaQuery.of(context).padding.bottom,
+                        isDense: true,
+
+                        isExpanded: true,
+                        hint: const Text(
+                          "Select End Point",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        value: _toLocation.isNotEmpty ? _toLocation : null,
+                        items: listItems
+                            .map((item) => DropdownMenuItem(
+                            alignment:Alignment.center,
+
+                                  value: item,
+                                  child: Text(item,style: const TextStyle(color: Colors.white),),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _toLocation = value.toString();
+                          });
+                        },
+                      ),
+
+
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
