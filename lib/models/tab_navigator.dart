@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_shw/pages/locations_for_google_maps.dart';
-import 'package:project_shw/pages/petrol_pumps.dart';
+import 'package:project_shw/pages/tutorial.dart';
 import 'package:project_shw/search_screen/search_screen.dart';
 
 class TabNavigator extends StatelessWidget {
@@ -18,7 +18,7 @@ class TabNavigator extends StatelessWidget {
       child = const LocationsForGoogleMaps();
     }
     else if (tabItem == 'Stops') {
-      child = const PetrolPumps();
+      child = const Tutorial();
     }
     else if (tabItem == 'Settings') {
       child = const LocationsForGoogleMaps();

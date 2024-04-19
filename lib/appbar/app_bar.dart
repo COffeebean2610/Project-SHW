@@ -1,7 +1,7 @@
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:project_shw/pages/locations_for_google_maps.dart";
-import "package:project_shw/pages/petrol_pumps.dart";
+import "package:project_shw/pages/tutorial.dart";
 
 
 class AppDrawerForAll extends StatelessWidget {
@@ -64,7 +64,7 @@ class AppDrawerForAll extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const PetrolPumps(),
+        builder: (context) => const Tutorial(),
       ),
     );
   }

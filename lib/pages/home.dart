@@ -4,7 +4,7 @@ import 'package:project_shw/appbar/app_bar.dart';
 
 import 'package:project_shw/pages/settings.dart';
 import 'package:project_shw/pages/locations_for_google_maps.dart';
-import 'package:project_shw/pages/petrol_pumps.dart';
+import 'package:project_shw/pages/tutorial.dart';
 import 'package:project_shw/search_screen/search_screen.dart';
 
 class Home extends StatefulWidget {
@@ -18,7 +18,7 @@ class HomeState extends State<Home> {
   final List<Widget> _pageList = [
     const SearchScreen(),
     const LocationsForGoogleMaps(),
-    const PetrolPumps(),
+    const Tutorial(),
     const Settings()
   ];
 
