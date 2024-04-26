@@ -8,6 +8,7 @@ import '../pages/details_screen.dart';
 import '../pages/item_card.dart';
 
 class NextScreen extends StatefulWidget {
+
   final List<String> filteredRoute;
 
   const NextScreen({Key? key, required this.filteredRoute}) : super(key: key);

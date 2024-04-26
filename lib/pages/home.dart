@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:project_shw/appbar/app_bar.dart';
-
 import 'package:project_shw/pages/settings.dart';
 import 'package:project_shw/pages/locations_for_google_maps.dart';
 import 'package:project_shw/pages/petrol_pumps.dart';

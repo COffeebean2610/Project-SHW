@@ -17,7 +17,6 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
   List<MapLoc?> products = [];
   bool isLoading = true;
 
-
   @override
   void initState() {
     super.initState();
@@ -122,13 +121,14 @@ class _LocationsForGoogleMapsState extends State<LocationsForGoogleMaps> {
                           return Container(); // or any other placeholder widget
                         }
                       },
-
                     ),
                   ),
           ),
         ],
       ),
-      backgroundColor: Colors.grey.shade900,
+         backgroundColor: Colors.grey.shade900,
     );
   }
 }
+
+
